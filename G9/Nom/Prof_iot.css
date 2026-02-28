@@ -1,0 +1,97 @@
+body {
+    margin: 0;
+    font-family: 'Prompt', sans-serif;
+    background-color: #f4f4f4;
+}
+.hero {
+    height: 250px;
+    background-image: url("photo/p13.jpg");
+    background-position: center;
+    background-size: cover;
+}
+.hero-overlay {
+    height: 100%;
+    background-color: rgba(255,255,255,0.7);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.hero-overlay h1 {
+    font-size: 32px;
+    font-weight: 600;
+}
+
+.section {
+    padding: 40px 20px;
+    text-align: center;
+}
+.section-title {
+    color: #F37021;
+    margin-bottom: 30px;
+}
+.grid {
+    display: grid;
+    justify-content: center;
+    gap: 40px;
+}
+.grid-2 {
+    grid-template-columns: repeat(2, 250px);
+}
+.grid-3 {
+    grid-template-columns: repeat(3, 250px);
+}
+.grid-4 {
+    grid-template-columns: repeat(4, 250px);
+}
+.card img {
+    width: 160px;
+    height: 160px;
+
+    border-radius: 50%;
+    object-fit: cover;
+
+    margin-bottom: 10px;
+}
+.card h3 {
+    font-size: 13px;
+    margin: 5px 0;
+}
+.card p {
+    font-size: 12px;
+}
+.title {
+    color: #F37021;
+}
+@media (max-width: 768px)
+{
+    .grid-4 {
+        grid-template-columns: 1fr;
+    }
+    .grid-3 {
+        grid-template-columns: 1fr;
+    }
+    .grid-2 {
+        grid-template-columns: 1fr;
+    }
+}
+/* SCROLL ANIMATION */
+.fade-up {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.8s ease;
+}
+
+.fade-up.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+@media screen and (max-width: 768px) {
+    .hero-overlay h1 {
+        font-size: 24px; 
+        text-align: center; 
+        padding-left: 20px; 
+        padding-right: 20px; 
+        line-height: 1.4; 
+    }
+}

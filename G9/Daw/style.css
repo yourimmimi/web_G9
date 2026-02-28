@@ -1,0 +1,603 @@
+ /* Variables & Reset */
+:root {
+    --primary-orange: #F37021; /* สีส้มตามภาพ */
+    --text-dark: #333;
+    --text-gray: #666;
+    --bg-light: #fff;
+    --font-heading: 'Prata', serif;
+    --font-body: 'Prompt', sans-serif;
+}
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--bg-light);
+    color: var(--text-dark);
+}
+
+a { text-decoration: none; color: inherit; }
+
+/* 1. Navigation Bar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 40px;
+    background: white;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    border-top: 20px solid #F37021;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+.navbar .logo img {
+    width: 200px;
+    height: auto;
+    display: block;
+    object-fit: contain; 
+}
+.nav-links { list-style: none; display: flex; gap: 50px; font-size: 0.8rem; font-weight: 600; }
+
+.nav-links li:hover { 
+    color: var(--primary-orange); }
+
+
+.hamburger { display: none; cursor: pointer; font-size: 1.5rem; }
+
+.dropdown-menu {
+    position: relative;
+    display: inline-block;
+}
+
+
+.arrow {
+    font-size: 0.7em;
+    margin-left: 5px;
+    vertical-align: middle;
+}
+.dropdown-menu {
+    position: relative;
+    display: flex; 
+    align-items: center;
+    height: 100%;
+}
+
+.arrow {
+    font-size: 0.7em;
+    margin-left: 5px;
+    vertical-align: middle;
+    display: inline-block;
+    transition: transform 0.3s ease;
+}
+
+.dropdown-menu:hover .arrow {
+    transform: rotate(180deg);
+}
+
+.dropdown-content {
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    background-color: var(--primary-orange, #F37021);
+    min-width: 250px;
+    max-width: 350px; 
+    box-shadow: 0px 10px 20px rgba(0,0,0,0.15); 
+    z-index: 1000;
+    top: 100%; 
+    left: 0;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border-radius: 5px; 
+    overflow: hidden; 
+    transition: all 0.3s ease; 
+}
+
+.dropdown-content li {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.dropdown-content li:last-child {
+    border-bottom: none;
+}
+
+.dropdown-content li a {
+    color: white !important;
+    padding: 15px 20px;
+    text-decoration: none;
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 500;
+    line-height: 1.4; 
+    transition: background-color 0.3s, padding-left 0.3s; 
+}
+
+.dropdown-content li a:hover {
+    background-color: #d95e16; 
+    padding-left: 25px; 
+}
+
+
+.dropdown-menu:hover .dropdown-content {
+    visibility: visible;
+    opacity: 1;
+    top: 100%;
+}
+
+
+.dropdown-menu:hover .arrow {
+    transform: rotate(180deg);
+}
+
+.dropdown-menu.align-right .dropdown-content {
+    align-items: center;
+    left: auto;
+    right: 0;
+}
+@media (max-width: 768px) {
+    .nav-links { display: none; }
+    .hamburger { display: block; }
+    .dropdown-menu {
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+    }
+    .dropdown-menu > a {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .dropdown-content {
+        position: relative; 
+        top: 0 !important;
+        width: 100%;
+        max-width: 100%;
+        box-shadow: none; 
+        background-color: #d95e16; 
+
+        display: none; 
+        visibility: visible;
+        opacity: 1;
+        border-radius: 5px; 
+        padding-left: 15px; 
+    }
+
+    .dropdown-menu.align-right .dropdown-content {
+        right: auto;
+    }
+
+    .dropdown-menu:hover .dropdown-content,
+    .dropdown-menu:active .dropdown-content,
+    .dropdown-menu:focus-within .dropdown-content {
+        display: block;
+    }
+
+    .dropdown-menu:hover .arrow,
+    .dropdown-menu:active .arrow,
+    .dropdown-menu:focus-within .arrow {
+        transform: rotate(180deg);
+    }
+}
+
+/* 1. จัดการกรอบนอกสุด (header) ให้เป็นจุดอ้างอิงหลัก */
+.hero {
+    position: relative; /* สำคัญ: เป็นจุดอ้างอิงให้รูปภาพที่อยู่ด้านใน */
+    width: 100%;
+    height: 60vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    overflow: hidden; 
+}
+
+/* 2. Overlay สีดำโปร่งแสง */
+.hero::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); 
+    z-index: 1; 
+}
+
+/* 3. กล่องเนื้อหา (สำคัญ: ห้ามใส่ position: relative ตรงนี้เด็ดขาด) */
+.hero-content {
+    width: 100%;
+    padding: 0 20px;
+}
+
+/* 4. รูปภาพจะขยายเต็มกล่อง .hero แล้วเพราะไม่ถูก .hero-content ขังไว้ */
+.hero-content img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* ขยายเต็มพื้นที่โดยไม่ผิดสัดส่วน */
+    object-position: center; 
+    z-index: 0; /* ให้อยู่หลังสุด */
+}
+
+/* 5. ย้าย position: relative มาไว้ที่ข้อความแทน เพื่อให้ข้อความลอยอยู่บนสุด */
+.hero-content h1, .hero-content h2 {
+    position: relative; 
+    z-index: 2; /* ดันข้อความให้อยู่ชั้นบนสุด */
+    color: #fff;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8); 
+    margin-bottom: 10px;
+}
+
+.hero-content h1 { font-size: 2.5rem; }
+.hero-content h2 { font-size: 1.5rem; font-weight: 400; }
+
+/* 6. Responsive สำหรับมือถือ */
+@media screen and (max-width: 768px) {
+    .hero {
+        height: 50vh;
+    }
+    .hero-content h1 { font-size: 1.8rem; }
+    .hero-content h2 { font-size: 1.2rem; }
+}
+/* 3. Admission Section */
+.admission-section {
+    padding: 50px 5%;
+    text-align: center;
+    position: relative;
+    /* สร้างพื้นหลังสีส้มเฉียงๆ แบบในรูป */
+    background: linear-gradient(to bottom, white 50%, #fdb57b 50%, var(--primary-orange) 100%);
+}
+
+.section-title {
+    color: var(--primary-orange);
+    font-size: 2.5rem;
+    margin-bottom: 40px;
+    background: white; /* บังพื้นหลังตรงตัวอักษร */
+    display: inline-block;
+    padding: 0 20px;
+}
+
+/* ใช้ Grid เพื่อให้แบ่งคอลัมน์และปรับขนาดตามหน้าจออัตโนมัติ */
+.cards-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.card {
+    background: #fdf5f2;
+    border-top: 15px solid var(--primary-orange);
+    text-decoration: none;
+    color: var(--dark-text);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.card img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    object-position: 30%; 
+}
+
+.card-content {
+    padding: 20px;
+    flex-grow: 1;
+}
+
+.card-footer {
+    background: #a99d9b;
+    color: white;
+    padding: 10px;
+    font-size: 0.9rem;
+}
+
+/* 4. Program Details Section */
+.program-details {
+    padding: 50px 5%;
+    text-align: center;
+    background: white;
+}
+
+.program-details h2 {
+    color: var(--primary-orange);
+    margin-bottom: 20px;
+}
+
+.orange-box {
+    background: var(--primary-orange);
+    color: white;
+    padding: 30px;
+    border-radius: 15px;
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+.orange-box p {
+    margin-bottom: 15px;
+    line-height: 1.6;
+}
+
+/* --- Responsive Design สำหรับมือถือ --- */
+@media screen and (max-width: 768px) {
+    .nav-links {
+        display: none; /* ซ่อนเมนูไว้ก่อนบนมือถือ */
+        flex-direction: column;
+        width: 100%;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        background: white;
+        padding: 20px 0;
+    }
+    .nav-links.active {
+        display: flex; /* แสดงเมื่อคลิกปุ่ม */
+    }
+    .menu-toggle {
+        display: block;
+    }
+    .bar {
+        width: 25px;
+        height: 3px;
+        background: var(--dark-text);
+        margin: 5px auto;
+        display: block;
+    }
+    .hero-content h1 { font-size: 1.8rem; }
+    .hero-content h2 { font-size: 1.2rem; }
+    .admission-section {
+        background: white; /* ปิดลูกเล่นพื้นหลังบนมือถือเพื่อความอ่านง่าย */
+    }
+}
+/* 5. Admission Rounds Section */
+.admission-rounds {
+    padding: 40px 5% 80px; /* เว้นระยะบน ซ้าย-ขวา ล่าง */
+    background-color: #fff;
+}
+
+/* ควบคุมความกว้างไม่ให้ปุ่มยืดไปเต็มจอคอมพิวเตอร์ */
+.round-container {
+    max-width: 700px;
+    margin: 0 auto; /* จัดให้อยู่กึ่งกลางหน้าจอ */
+}
+
+/* หัวข้อรอบที่ 1, 2... */
+.round-title {
+    color: var(--primary-orange);
+    font-size: 2.2rem;
+    font-family: 'Times New Roman', Times, serif; /* ใช้ฟอนต์มีหัวคล้ายในรูป */
+    margin-top: 40px;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+/* กล่องจัดเรียงปุ่ม */
+.project-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* ระยะห่างระหว่างปุ่ม */
+}
+
+/* หน้าตาของปุ่มแต่ละโครงการ */
+.project-btn {
+    display: block;
+    /* ไล่สีพื้นหลังให้ดูมีมิติเหมือนปุ่มกด */
+    background: linear-gradient(180deg, #fba861 0%, var(--primary-orange) 100%);
+    color: white;
+    text-decoration: none; /* เอาเส้นใต้ลิงก์ออก */
+    padding: 15px 20px;
+    border-radius: 5px; /* ขอบมนนิดๆ */
+    font-weight: 500;
+    font-size: 1.1rem;
+    text-align: center; /* จัดข้อความให้อยู่กึ่งกลางปุ่ม */
+    line-height: 1.5; /* ระยะห่างบรรทัดกรณีข้อความยาว */
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* เงาใต้ปุ่ม */
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* ลูกเล่นตอนเอาเมาส์ไปชี้ที่ปุ่ม */
+.project-btn:hover {
+    transform: translateY(-3px); /* ปุ่มลอยขึ้นนิดนึง */
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15); /* เงาเข้มขึ้น */
+    background: linear-gradient(180deg, #fcc086 0%, #f48b32 100%); /* สีสว่างขึ้น */
+}
+
+/* --- สำหรับหน้าจอมือถือ --- */
+@media screen and (max-width: 768px) {
+    .round-title { font-size: 1.8rem; }
+    .project-btn { font-size: 1rem; padding: 12px 15px; }
+}
+/* 6. Footer / Contact Section */
+ /*=========================================*/
+.footer {
+    display: flex;
+    justify-content: space-between;
+    background-color: #fafafa;
+    padding: 40px;
+    border-top: 2px solid #eee;
+    margin-top: 20px;
+}
+
+.footer-left {
+    flex: 1;
+}
+
+.footer-heading {
+    color: #d94a26;
+    margin: 0 0 15px 0;
+    font-size: 14px;
+}
+
+.contact-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.social-icons {
+    display: flex;
+    gap: 8px;
+    font-size: 28px;
+    color: #444;
+}
+
+/* รองรับทั้งการใช้ไอคอน <i> และรูปภาพ <img> */
+.social-icons i {
+    cursor: pointer;
+    transition: 0.3s;
+} 
+.social-icons img {
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.social-icons i:hover {
+    color: #d94a26;
+}
+
+.social-icons img:hover {
+    transform: scale(1.1); /* เพิ่มลูกเล่นให้รูปภาพขยายเวลานำเมาส์ไปชี้ */
+}
+
+.social-icons a {
+    color: inherit; 
+    text-decoration: none; 
+}
+
+.phone-numbers {
+    font-size: 10px;
+    line-height: 1.4;
+    font-weight: bold;
+}
+
+.footer-logo {
+    display: flex;
+    align-items: center;
+}
+
+.footer-right {
+    flex: 1;
+    padding-left: 50px;
+}
+
+.footer-right h3 {
+    margin: 0 0 10px 0;
+    font-size: 16px;
+    color: #000;
+}
+
+.footer-right p {
+    margin: 0;
+    font-size: 12px;
+    line-height: 1.8;
+    color: #333;
+}
+
+/* Responsive สำหรับมือถือ */
+@media screen and (max-width: 768px) {
+.footer {
+        flex-direction: column; /* เปลี่ยนจากซ้าย-ขวา เป็น บน-ล่าง */
+        padding: 30px 20px;
+        gap: 30px;
+    }
+    .footer-right {
+        padding-left: 0;
+    }
+}
+/* =========================================
+   หน้า Project Detail (รายละเอียดโครงการ)
+   ========================================= */
+
+/* คุมความกว้างของหน้าไม่ให้ยืดเกินไป */
+.detail-container {
+    max-width: 900px;
+    margin: 50px auto; /* ขยับลงมาจากแถบเมนูด้านบน */
+    padding: 0 20px;
+}
+
+/* กล่องสีเทาใส่เนื้อหา */
+.gray-box {
+    background-color: #dfdfdf; /* สีเทาอ่อนตามแบบ */
+    padding: 40px;
+    border-radius: 10px; /* ขอบมน */
+    color: #666; /* สีตัวอักษรเทาเข้ม */
+    margin-bottom: 40px;
+}
+
+/* หัวข้อภายในกล่องสีเทา */
+.gray-box h3 {
+    color: #777;
+    margin-top: 25px;
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+}
+
+.gray-box h3:first-child {
+    margin-top: 0; /* เอาขอบด้านบนของหัวข้อแรกออก */
+}
+
+/* จัดระยะห่างของข้อความและลิสต์ */
+.gray-box p, 
+.gray-box ul {
+    line-height: 1.6;
+    margin-bottom: 15px;
+    font-size: 1rem;
+    font-weight: 600; /* ทำให้ตัวหนังสือดูหนาขึ้นตามแบบ */
+}
+
+.gray-box ul {
+    margin-left: 30px; /* ขยับจุด Bullet เข้ามา */
+}
+
+/* ลิงก์รายละเอียดเพิ่มเติม */
+.gray-box a {
+    color: #777;
+    text-decoration: underline; /* มีเส้นใต้ */
+    font-weight: bold;
+    word-break: break-all; /* ป้องกันลิงก์ยาวทะลุกล่องในจอมือถือ */
+}
+
+.gray-box a:hover {
+    color: var(--primary-orange); /* เวลาเอาเมาส์ชี้ให้เปลี่ยนเป็นสีส้ม */
+}
+
+/* กล่องครอบปุ่มย้อนกลับ เพื่อจัดให้อยู่กึ่งกลาง */
+.button-container {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+/* หน้าตาปุ่ม GO BACK */
+.go-back-btn {
+    display: inline-block;
+    background-color: var(--primary-orange);
+    color: white;
+    padding: 12px 40px;
+    border-radius: 30px; /* ขอบมนเป็นทรงแคปซูล */
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.1rem;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* เงาใต้ปุ่ม */
+    transition: all 0.3s ease;
+}
+
+/* เอฟเฟกต์ตอนชี้เมาส์ที่ปุ่ม */
+.go-back-btn:hover {
+    background-color: #e66c15; /* สีส้มเข้มขึ้น */
+    transform: translateY(-2px); /* ปุ่มลอยขึ้นนิดนึง */
+    box-shadow: 0
+}

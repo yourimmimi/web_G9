@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Academics</title>
+    <link href="https://fonts.googleapis.com/css2?family=Prata&family=Prompt:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style_academic.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+     <nav class="navbar">
+        <div class="logo">
+            <img src="photo/IOTE.png" alt="IOTE Logo">
+        </div>
+        <ul class="nav-links">
+            <li><a href="home.html">HOME</a></li>
+            <li><a href="about.html">ABOUT</a></li>
+            
+            <li class="dropdown-menu">
+                <a href="academic.html" class="dropbtn">ACADEMICS <span class="arrow">▼</span></a>
+                <ul class="dropdown-content">
+                    <li><a href="iot.html">IOT AND INFORMATION SYSTEMS ENGINEERING</a></li>
+                    <li><a href="dbdegree.html">PHYSICS & AND INFORMATION SYSTEMS ENGINEERING</a></li>
+                    <li><a href="comcon.html">COMPUTER AND INFORMATION SYSTEMS ENGINEERING</a></li>
+                </ul>
+            </li>
+
+            <li><a href="admission.html">ADMISSION</a></li>
+            
+            <li class="dropdown-menu align-right">
+                <a href="Prof_iot.html" class="dropbtn">FACULTY <span class="arrow">▼</span></a>
+                <ul class="dropdown-content">
+                    <li><a href="Prof_iot.html">PROFESSOR OF IOT AND INFORMATION</a></li>
+                    <li><a href="Prof_phy.html">PROFESSOR OF INDUSTRIAL PHYSICS</a></li>
+                </ul>
+            </li>
+            
+            <li><a href="news.html">NEWS</a></li>
+        </ul>
+        <div class="hamburger">☰</div>
+    </nav>
+
+
+    <header class="hero-header">
+        <div class="hero-content">
+            <h1>OUR ACADEMICS</h1>
+            <h2>EDUCATION FOR THE FUTURE</h2>
+        </div>
+    </header>
+
+    <main>
+        <section id="academic" class="container">
+            <div class="section-title">
+                <h3>ACADEMICS</h3>
+                <p>DEPARTMENT OF IOT AND INFORMATION ENGINEERING</p>
+            </div>
+
+            <div class="program-grid" id="program-container">
+                <p style="text-align:center; width:100%;">Loading Programs...</p>
+            </div>
+        </section>
+
+        <section id="news" class="container">
+            <div class="news-header">
+                <h3><a href="news.html">IOT NEWS</a> <span class="line"></span></h3>
+            </div>
+            
+            <div class="news-grid" id="news-container">
+                </div>
+        </section>
+    </main>
+    
+ <footer class="footer">
+            <div class="footer-left">
+                <h4 class="footer-heading">Connect with IOT KMITL</h4>
+                <div class="contact-info">
+                    <div class="social-icons">
+                        <a href="https://www.facebook.com/IOTE.KMITL" target="_blank">
+                            <i class="fa-brands fa-square-facebook"></i>
+                        </a>
+
+                        <a href="https://www.instagram.com/kmitl.iote.official?fbclid=IwY2xjawQKS4VleHRuA2FlbQIxMABicmlkETIxd3NCTzJtVnE4ZlY3NjI5c3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHjcWmaXV3eEym0lPrs4ecofayuT7VoH3XkZOhyDJuH546tHFEoZbMlP0cS68_aem_m3Lopa6hOla_hgNYOKbWRA" target="_blank">
+                            <i class="fa-brands fa-square-instagram"></i>
+                        </a>
+
+                        <a href="mailto:iote@kmitl.ac.th">
+                            <i class="fa-solid fa-envelope"></i>
+                        </a>
+
+                        <a href="tel:023298000">
+                            <i class="fa-solid fa-phone"></i>
+                        </a>
+                    </div>
+                    <div class="phone-numbers">
+                        <span>02-329-8000 ext.5129</span><br>
+                        <span>02-329-8301 ext.235</span>
+                    </div>
+                </div>
+                <div class="footer-logo">
+                    <img src="photo/IOTE.png" alt="IOTE Logo" style="height: 60px; margin-right: 15px;">
+                </div>
+            </div>
+<div class="footer-right">
+                <h3>Department of IoT and Information Engineering</h3>
+                <p>
+                    ภาควิชาวิศวกรรมไอโอทีและสารสนเทศ<br>
+                    คณะวิศวกรรมศาสตร์ สถาบันเทคโนโลยีพระจอมเกล้าเจ้าคุณทหารลาดกระบัง<br>
+                    ชั้น 12 อาคารเรียนรวม 12 ชั้น<br>
+                    เลขที่ 1 ซอยฉลองกรุง 1 แขวงลาดกระบัง เขตลาดกระบัง<br>
+                    กรุงเทพมหานคร 10520
+                </p>
+            </div>
+        </footer>
+
+    <div id="news-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <img id="modal-img" src="" alt="News Image">
+            <h3 id="modal-title">หัวข้อข่าว</h3>
+            <p id="modal-desc">รายละเอียดข่าว...</p>
+        </div>
+    </div>
+
+    <script src="script_academic.js"></script>
+</body>
+</html>

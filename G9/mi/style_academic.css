@@ -1,0 +1,601 @@
+/* Variables & Reset */
+:root {
+    --primary-orange: #F37021; /* สีส้มตามภาพ */
+    --text-dark: #333;
+    --text-gray: #666;
+    --bg-light: #fff;
+    --font-heading: 'Prata', serif;
+    --font-body: 'Prompt', sans-serif;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--bg-light);
+    color: var(--text-dark);
+}
+
+a { text-decoration: none; color: inherit; }
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 40px;
+    background: white;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    border-top: 20px solid #F37021; /* แถบส้มด้านบนสุด */
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+.navbar .logo img {
+    width: 200px;       /* ปรับตัวเลขนี้เพื่อลด/เพิ่มขนาด (แนะนำ 150px - 200px) */
+    height: auto;       /* ให้ความสูงปรับตามอัตโนมัติ สัดส่วนจะไม่เพี้ยน */
+    display: block;     /* จัดระเบียบการวาง */
+    object-fit: contain; /* มั่นใจว่าภาพจะไม่โดนตัด */
+}
+.nav-links { list-style: none; display: flex; gap: 50px; font-size: 0.8rem; font-weight: 600; }
+
+.nav-links li:hover { 
+    color: var(--primary-orange); }
+     
+
+.hamburger { display: none; cursor: pointer; font-size: 1.5rem; }
+
+/*Dropdown Menu Styles */
+
+.dropdown-menu {
+    position: relative;
+    display: flex; 
+    align-items: center;
+    height: 100%;
+}
+
+.arrow {
+    font-size: 0.7em;
+    margin-left: 5px;
+    vertical-align: middle;
+    display: inline-block;
+    transition: transform 0.3s ease;
+}
+
+.dropdown-menu:hover .arrow {
+    transform: rotate(180deg);
+}
+
+.dropdown-content {
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    background-color: var(--primary-orange, #F37021);
+    min-width: 250px;
+    max-width: 350px; 
+    box-shadow: 0px 10px 20px rgba(0,0,0,0.15); 
+    z-index: 1000;
+    top: 100%; 
+    left: 0;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border-radius: 5px; 
+    overflow: hidden; 
+    transition: all 0.3s ease; 
+}
+
+.dropdown-content li {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.dropdown-content li:last-child {
+    border-bottom: none;
+}
+
+.dropdown-content li a {
+    color: white !important;
+    padding: 15px 20px;
+    text-decoration: none;
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 500;
+    line-height: 1.4; 
+    transition: background-color 0.3s, padding-left 0.3s; 
+}
+
+.dropdown-content li a:hover {
+    background-color: #d95e16; 
+    padding-left: 25px; 
+}
+
+
+.dropdown-menu:hover .dropdown-content {
+    visibility: visible;
+    opacity: 1;
+    top: 100%;
+}
+
+
+.dropdown-menu:hover .arrow {
+    transform: rotate(180deg);
+}
+
+.dropdown-menu.align-right .dropdown-content {
+    align-items: center;
+    left: auto;
+    right: 0;
+}
+
+main .container {
+    width: 100% !important;
+    max-width: 100% !important; 
+    padding-left: 20px; 
+    padding-right: 20px;
+}
+/* Hero Section */
+.hero-header {
+    background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('photo/building12.png');
+    background-size: cover;
+    background-position: center;
+    height:700px;
+    display: flex;
+    align-items: center;
+    padding-left: 10%;
+    color: white;
+}
+
+.hero-content h1 {
+    font-family: var(--font-heading);
+    font-size: 3rem;
+    font-weight: 400;
+    margin-bottom: 10px;
+}
+.hero-content h2 {
+    font-family: var(--font-heading);
+    font-size: 3rem;
+    font-weight: 400;
+}
+
+/* Container Utility */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 60px 20px;
+}
+
+/* Section Title */
+.section-title {
+    text-align: center;
+    margin-bottom: 50px;
+}
+.section-title h3 {
+    font-family: var(--font-heading);
+    color: var(--primary-orange);
+    font-size: 2.5rem;
+    position: relative;
+    display: inline-block;
+    padding: 0 20px;
+}
+/* เส้นขีดข้างๆ คำว่า ACADEMICS */
+.section-title h3::before, .section-title h3::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 60px;
+    height: 2px;
+    background-color: var(--primary-orange);
+}
+.section-title h3::before { left: -60px; }
+.section-title h3::after { right: -60px; }
+
+.section-title p {
+    margin-top: 10px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    font-size: 1rem;
+}
+
+/* Program Cards (Grid) */
+.program-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.program-card {
+    background: white;
+    border-top: 5px solid var(--primary-orange); /* ขีดส้มด้านบน */
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+}
+
+.program-card:hover {
+    transform: translateY(-10px);
+}
+
+.card-img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+
+.card-content {
+    padding: 25px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-tag {
+    color: var(--primary-orange);
+    font-size: 0.75rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+}
+
+.card-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    line-height: 1.5;
+    color: #222;
+}
+
+/* News Section */
+.news-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+}
+.news-header h3 {
+    font-family: var(--font-heading);
+    font-size: 2.5rem;
+    margin-right: 20px;
+}
+
+.news-header h3 {
+    font-family: var(--font-heading);
+    color: var(--primary-orange);
+    font-size: 2.5rem;
+    position: relative;
+    display: inline-block;
+    padding: 0 20px;
+}
+/* เส้นขีดข้างๆ คำว่า IOTE NEWS */
+.news-header h3::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 850px;
+    height: 1.5px;
+    background-color: var(--primary-orange);
+}
+
+.news-header h3::after { right: -850px; }
+
+.news-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+.news-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+.news-card p {
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+/* --- News Modal (Popup) --- */
+.modal {
+    display: none; /* ซ่อนไว้เป็นค่าเริ่มต้น */
+    position: fixed;
+    z-index: 1000; /* ให้อยู่บนสุด */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.6); /* พื้นหลังสีดำโปร่งแสง */
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 10% auto; /* ให้อยู่ตรงกลางจอ */
+    padding: 30px;
+    border: none;
+    width: 80%;
+    max-width: 600px;
+    border-radius: 10px;
+    position: relative;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.modal-content img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.modal-content h3 {
+    color: var(--primary-orange, #F37021);
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+}
+
+.modal-content p {
+    color: #555;
+    line-height: 1.6;
+    white-space: pre-wrap; /* เพิ่มบรรทัดนี้ เพื่อให้ \n ใน JS ตัดบรรทัดได้จริง */
+    max-height: 60vh; /* จำกัดความสูงของข้อความไม่ให้ล้นจอ */
+    overflow-y: auto; /* ให้เลื่อนอ่านเฉพาะข้อความได้ถ้าข่าวยาวเกินไป */
+    padding-right: 10px; /* เว้นระยะ scrollbar */
+}
+#news-modal .modal-content { 
+    max-height: 80vh; /* จำกัดความสูงของ Pop-up ไม่ให้เกิน 80% ของหน้าจอ */
+    overflow-y: auto; /* ถ้าเนื้อหายาวกว่าจอ ให้สามารถใช้นิ้วเลื่อนขึ้นลงได้ */
+}
+/* ปุ่มกากบาทสำหรับปิด */
+.close-btn {
+    color: #aaa;
+    position: absolute;
+    top: 2px;
+    right: 10px;
+    font-size: 35px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+    color: #000;
+    text-decoration: none;
+}
+
+.news-card {
+    cursor: pointer;
+    transition: opacity 0.3s;
+}
+.news-card:hover {
+    opacity: 0.8;
+}
+
+/* Footer */
+.footer {
+    display: flex;
+    justify-content: space-between;
+    background-color: #fafafa;
+    padding: 40px;
+    border-top: 2px solid #eee;
+    margin-top: 20px;
+}
+
+.footer-left {
+    flex: 1;
+}
+
+.footer-heading {
+    color: #d94a26;
+    margin: 0 0 15px 0;
+    font-size: 14px;
+}
+
+.contact-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.social-icons {
+    display: flex;
+    gap: 8px;
+    font-size: 28px;
+    color: #444;
+}
+
+.social-icons i {
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.social-icons i:hover {
+    color: #d94a26;
+}
+
+.phone-numbers {
+    font-size: 10px;
+    line-height: 1.4;
+    font-weight: bold;
+}
+
+.footer-logo {
+    display: flex;
+    align-items: center;
+}
+
+.footer-right {
+    flex: 1;
+    padding-left: 50px;
+}
+
+.footer-right h3 {
+    margin: 0 0 10px 0;
+    font-size: 16px;
+    color: #000;
+}
+
+.footer-right p {
+    margin: 0;
+    font-size: 12px;
+    line-height: 1.8;
+    color: #333;
+}
+
+.social-icons a {
+    color: inherit; 
+    text-decoration: none; 
+}
+
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .nav-links { display: none; }
+    .hamburger { display: block; }
+    
+    .dropdown-menu {
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+    }
+    .dropdown-menu > a {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .dropdown-content {
+        position: relative; 
+        top: 0 !important;
+        width: 100%;
+        max-width: 100%;
+        box-shadow: none; 
+        background-color: #d95e16; 
+        
+        display: none; 
+        visibility: visible;
+        opacity: 1;
+        border-radius: 5px; 
+        padding-left: 15px; 
+    }
+
+    .dropdown-menu.align-right .dropdown-content {
+        right: auto;
+    }
+
+    .dropdown-menu:hover .dropdown-content,
+    .dropdown-menu:active .dropdown-content,
+    .dropdown-menu:focus-within .dropdown-content {
+        display: block;
+    }
+
+    .dropdown-menu:hover .arrow,
+    .dropdown-menu:active .arrow,
+    .dropdown-menu:focus-within .arrow {
+        transform: rotate(180deg);
+    }
+    .hero-content h1 { font-size: 2rem; }
+    .program-grid, .news-grid { grid-template-columns: 1fr; }
+    .section-title h3::before, .section-title h3::after { display: none; } /* ซ่อนเส้นขีดบนมือถือ */
+    .footer {
+        flex-direction: column; /* เปลี่ยนจากซ้าย-ขวา เป็น บน-ล่าง */
+        padding: 30px 20px;
+        gap: 30px;
+    }
+    .footer-right {
+        padding-left: 0;
+    }
+    
+}
+@media (max-width: 1024px) {
+    .program-grid, .news-grid { 
+    gap: 15px; 
+    }
+}
+@media screen and (max-width: 950px) and (orientation: landscape) {
+    #news-modal .modal-content {
+        max-height: 85vh; 
+        width: 90% !important;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        margin: 0; /* ล้างค่า margin เก่าทิ้ง ป้องกันการดึงตำแหน่งเพี้ยน */
+    }
+}
+/* 3. มือถือแนวนอน / แท็บเล็ตขนาดเล็ก (max-width: 768px) */
+@media (max-width: 768px) {
+    .nav-links { display: none; }
+    .hamburger { display: block; }
+    
+    .dropdown-menu { flex-direction: column; align-items: flex-start; width: 100%; }
+    .dropdown-menu > a { width: 100%; display: flex; justify-content: space-between; align-items: center; }
+    .dropdown-content {
+    position: relative; top: 0 !important; width: 100%; max-width: 100%; box-shadow: none; 
+    background-color: #d95e16; display: none; visibility: visible; opacity: 1; border-radius: 5px; padding-left: 15px; 
+    }
+    .dropdown-menu.align-right .dropdown-content { right: auto; }
+    .dropdown-menu:hover .dropdown-content, .dropdown-menu:active .dropdown-content, .dropdown-menu:focus-within .dropdown-content { display: block; }
+    .dropdown-menu:hover .arrow, .dropdown-menu:active .arrow, .dropdown-menu:focus-within .arrow { transform: rotate(180deg); }
+    
+    .hero-content h1 { font-size: 2.2rem; }
+    .hero-content h2 { font-size: 1.8rem; }
+    .program-grid, .news-grid { grid-template-columns: 1fr; }
+    .section-title h3::before, .section-title h3::after, .news-header h3::after { display: none; } 
+    
+    .footer { flex-direction: column; padding: 30px 20px; gap: 30px; }
+    .footer-right { padding-left: 0; }
+
+    /* ปรับขนาด Modal สำหรับ 768px */
+    .modal-content {
+        width: 85%;
+        margin: 15% auto;
+        padding: 25px;
+    }
+}
+
+/* 4. มือถือแนวตั้ง (iPhone รุ่นใหม่ๆ เช่น 375x812, 414x896) */
+@media (max-width: 480px) {
+    .hero-content h1 { font-size: 1.8rem; }
+    .hero-content h2 { font-size: 1.4rem; }
+    .navbar { padding: 15px 20px; }
+    .navbar .logo img { width: 150px; }
+
+    /* ปรับแต่ง Pop-up Modal ให้พอดีกับหน้าจอมือถือ */
+    .modal-content {
+        width: 95%; 
+        margin: 10% auto; 
+        padding: 20px; 
+    }
+    .modal-content h3 {
+        font-size: 1.2rem; 
+        margin-right: 20px; 
+    }
+    .modal-content p {
+        font-size: 0.9rem;
+        max-height: 50vh;
+    }
+    .close-btn {
+        top: 5px;
+        right: 15px;
+        font-size: 30px;
+    }
+}
+@media screen and (max-width: 950px) and (orientation: landscape) {
+    #news-modal .modal-content,
+    .modal-content {
+        max-height: 85vh; 
+        width: 90% !important;
+        
+        /* บังคับจัดกึ่งกลางและล้างค่าจากหน้าจออื่นๆ */
+        position: absolute !important;
+        top: 50% !important;
+        left: 50% !important;
+        transform: translate(-50%, -50%) !important;
+        margin: 0 !important; 
+    }
+}

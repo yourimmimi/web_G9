@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KMITL IoT - Home</title>
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    /* =========================================
+       0. VARIABLES
+       ========================================= */
+    :root{
+      --headerH: 130px;     /* 40 + 90 */
+      --preNews: 500px;     /* ระยะโชว์ BG ก่อนข่าว */
+      --heroH: max(500px, calc(100vh - var(--headerH)));
+
+      --designW: 1905px;
+      --heroImgPos: 50% 0%;
+      --bldImgPos: 50% 0%;
+
+      /* ✅ Figma: รูปกับเฟดเป็นคนละ layer */
+      --bldH: 964px;
+      --gradH: 900px;
+      --gradTop: 100px;
+
+      --bldTint: 0;
+      --gradBottom: 1;
+      --gradMid: 0.9;
+      --gradFadeTo: 100%;
+
+      /* ✅ คุมสเกล hero/community */
+      --contentMax: 1240px;
+      --heroPadR: 46%;
+
+      --heroMin: 40px;
+      --heroVW: 4.6vw;
+      --heroMax: 82px;
+
+      --kmitlScale: 0.92;
+      --heroLineH: 0.96;
+
+      --heroTextShift: -20px;
+      --newsLift: -120px;
+
+      /* ✅ สำหรับ section ต่อด้านล่าง */
+      --pageBg: #fbfaf6;
+      --ink: #111;
+      --muted: #6b6b6b;
+      --burnt: #B86A2E;
+      --orange: #F26522;
+
+      --pinTop: calc(var(--headerH) + 28px);
+      --hold: 72vh;
+      --cardW: min(1440px, 92vw);
+      --gap: 64px;
+    }
+
+    /* =========================================
+       1. GLOBAL RESET & UTILITIES
+       ========================================= */
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Kanit', sans-serif; }
+
+    body {
+      background-color: #000;
+      overflow-x: hidden;
+      padding-top: var(--headerH);
+    }
+
+    .text-orange { color: #F26522; }
+
+    /* =========================================
+       2. HEADER (Fixed)
+       ========================================= */
+    header {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      z-index: 9999;
+    }
+
+    .top-bar { background-color: #F26522; height: 40px; width: 100%; }
+
+    .navbar {
+      background-color: white; height: 90px; width: 100%;
+      display: flex; justify-content: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      position: relative; z-index: 1000;
+    }
+
+    .nav-container {
+      width: 92%; max-width: 1440px; height: 100%;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+
+    .logo img { height: 55px; width: auto; display: block; }
+    .nav-links { list-style: none; display: flex; align-items: center; gap: 45px; }
+    .nav-links a {
+      text-decoration: none; color: #000; font-size: 14px; font-weight: 500;
+      letter-spacing: 0.5px; text-transform: uppercase;
+      display: flex; align-items: center; gap: 6px;
+      transition: 0.3s;
+    }
+    .nav-links a:hover { color: #F26522; }
+    .icon { fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; margin-top: -2px; }
+    .hamburger { display: none; cursor: pointer; }
+    .hamburger div { width: 25px; height: 3px; background: #333; margin: 5px; transition: 0.3s; }
+
+    /* =========================================
+       3. HERO (BG + Sticky Text)
+       ========================================= */
+
+    .hero-banner-bg {
+      position: relative;
+      width: 100%;
+      height: var(--heroH);
+
+      background-image:
+        linear-gradient(90deg, #000000 0%, #000000 35%, rgba(0,0,0,0) 65%),
+        url('banner.jpg');
+
+      background-repeat: no-repeat, no-repeat;
+
+      background-size:
+        100% 100%,
+        min(100%, var(--designW)) auto;
+
+      background-position:
+        0 0,
+        var(--heroImgPos);
+
+      z-index: 0;
+    }
+
+    .hero-text-section {
+      position: relative;
+      width: 100%;
+      height: calc(var(--heroH) + var(--preNews));
+      margin-top: calc(-1 * var(--heroH));
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .hero-container-sticky {
+      position: sticky;
+      top: var(--headerH);
+      height: var(--heroH);
+      width: 92%;
+      max-width: 1440px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      pointer-events: auto;
+    }
+
+    .hero-text-content {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      padding-right: var(--heroPadR);
+      transform: translateY(var(--heroTextShift));
+      will-change: transform;
+    }
+
+    .hero-text-content h1 {
+      color: white;
+      font-size: clamp(var(--heroMin), var(--heroVW), var(--heroMax));
+      font-weight: 800;
+      line-height: var(--heroLineH);
+      text-transform: uppercase;
+      letter-spacing: -0.5px;
+      text-shadow: 0 10px 40px rgba(0,0,0,0.8);
+    }
+
+    .hero-text-content h1 .text-orange{
+      display: inline-block;
+      font-size: calc(1em * var(--kmitlScale));
+      letter-spacing: -0.8px;
+      margin-bottom: 10px;
+    }
+
+    /* =========================================
+       4. COMMUNITY & NEWS
+       ========================================= */
+    .community-section {
+      width: 100%;
+      position: relative;
+      z-index: 1;
+      background-color: #F26522;
+      overflow: hidden;
+      margin-top: calc(-1 * var(--preNews));
+      padding-top: var(--preNews);
+      padding-bottom: 80px;
+      min-height: 100vh;
+      color: white;
+    }
+
+    .community-section::before{
+      content:"";
+      position:absolute;
+      left:0; top:0;
+      width:100%;
+      height: var(--bldH);
+
+      background-image:
+        linear-gradient(rgba(242,101,34,var(--bldTint)), rgba(242,101,34,var(--bldTint))),
+        url('building.jpg');
+
+      background-repeat: no-repeat, no-repeat;
+
+      background-size:
+        100% 100%,
+        min(100%, var(--designW)) auto;
+
+      background-position:
+        0 0,
+        var(--bldImgPos);
+
+      z-index: 0;
+    }
+
+    .community-section::after{
+      content:"";
+      position:absolute;
+      left:0;
+      top: var(--gradTop);
+      width:100%;
+      height: var(--gradH);
+
+      background: linear-gradient(to top,
+        rgba(242,101,34,var(--gradBottom)) 0%,
+        rgba(242,101,34,var(--gradMid)) 35%,
+        rgba(242,101,34,0.35) 60%,
+        rgba(242,101,34,0) var(--gradFadeTo),
+        rgba(242,101,34,0) 100%
+      );
+
+      z-index: 1;
+      pointer-events: none;
+      filter: saturate(1.02) blur(0.2px);
+      transform: translateZ(0);
+    }
+
+    .community-container{
+      position: relative;
+      z-index: 2;
+      width: 92%;
+      max-width: var(--contentMax);
+      margin: 0 auto;
+    }
+
+    .news-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: 24px;
+      margin-bottom: 0;
+      margin-top: var(--newsLift);
+    }
+
+    .news-col-left { display: flex; flex-direction: column; gap: 24px; }
+
+    .news-card {
+      overflow: hidden; display: flex;
+      border-radius: 4px;
+      box-shadow: 0 12px 32px rgba(0,0,0,0.18);
+      transition: transform 0.3s ease; cursor: pointer;
+    }
+    .news-card:hover { transform: translateY(-4px); }
+
+    .small-card { height: 100%; min-height: 180px; }
+    .small-card .news-img {
+      flex: 1; min-width: 38%;
+      background-size: cover; background-position: center;
+    }
+    .small-card .news-content {
+      flex: 1.6; padding: 22px;
+      display: flex; flex-direction: column; justify-content: center;
+    }
+
+    .bg-blue { background-color: #0071BC; color: white; }
+    .bg-white { background-color: #fff; color: #333; }
+    .text-dark { color: #333 !important; }
+
+    .news-content h3 { font-size: 16px; font-weight: 600; margin-bottom: 8px; line-height: 1.35; }
+    .news-content p { font-size: 13px; font-weight: 300; opacity: 0.92; }
+
+    .large-card {
+      position: relative; height: 100%;
+      min-height: 420px;
+      background-color: #000;
+    }
+    .news-img-large {
+      width: 100%; height: 100%;
+      background-size: cover; background-position: center;
+      opacity: 0.85; transition: 0.3s;
+    }
+    .large-card:hover .news-img-large { opacity: 1; }
+
+    .news-overlay {
+      position: absolute; bottom: 0; left: 0; width: 100%;
+      background: linear-gradient(to top, rgba(0,0,0,0.95), transparent);
+      padding: 34px; padding-top: 72px;
+    }
+    .news-overlay h3 { font-size: 22px; font-weight: 600; text-shadow: 0 2px 4px rgba(0,0,0,0.5); }
+
+    .community-text {
+      text-align: center;
+      margin-top: 140px;
+    }
+    .community-text h2 {
+      font-size: 40px;
+      font-weight: 800;
+      text-transform: uppercase; letter-spacing: 1px;
+      margin-bottom: 22px; line-height: 1.05;
+    }
+    .community-text p {
+      font-size: 15px; font-weight: 300; line-height: 1.8; opacity: 0.9;
+    }
+
+    /* =========================================
+       5. CONTINUED SECTION AFTER COMMUNITY
+       ========================================= */
+    .stack{
+      background: var(--pageBg);
+      padding: 32px 0 140px;
+    }
+
+    .top-rule{
+      width: var(--cardW);
+      margin: 0 auto 34px;
+      height: 2px;
+      background: var(--orange);
+      opacity: .9;
+    }
+
+    .stack-card{
+      position: sticky;
+      top: var(--pinTop);
+      z-index: calc(10 + var(--i));
+      width: 100%;
+      background: var(--pageBg);
+      margin: 0 auto var(--hold);
+      transform: translateZ(0);
+    }
+    .stack-card:last-child{ margin-bottom: 0; }
+
+    /* work cards */
+    .stack-card.work .inner{
+      width: var(--cardW);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.15fr 1fr;
+      gap: var(--gap);
+      align-items: center;
+      padding: 18px 0;
+    }
+
+    .media{
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: #ddd center/cover no-repeat;
+      border-radius: 2px;
+      overflow: hidden;
+    }
+
+    .content h3{
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      line-height: 1.2;
+      color: var(--ink);
+    }
+
+    .content p{
+      font-size: 12.5px;
+      font-weight: 300;
+      line-height: 1.8;
+      color: #2b2b2b;
+      max-width: 520px;
+    }
+
+    .content .meta{
+      margin-top: 14px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    /* tuition card */
+    .stack-card.tuition{
+      background: var(--burnt);
+      color: #fff;
+      padding: 54px 0 64px;
+      overflow: hidden;
+    }
+
+    .stack-card.tuition::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        linear-gradient(rgba(184,106,46,0.86), rgba(184,106,46,0.86)),
+        url('tuition-bg.jpg');
+      background-size: cover, cover;
+      background-position: center, center;
+      filter: saturate(1.05);
+      z-index: 0;
+    }
+
+    .stack-card.tuition::after{
+      content:"";
+      position:absolute;
+      inset:-30% -10% auto -10%;
+      height: 120%;
+      background: radial-gradient(closest-side, rgba(255,255,255,0.10), rgba(255,255,255,0));
+      z-index: 0;
+      pointer-events:none;
+    }
+
+    .tuition-inner{
+      position: relative;
+      z-index: 1;
+      width: var(--cardW);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 54px;
+      align-items: center;
+    }
+
+    .tuition-h1{
+      font-size: 56px;
+      font-weight: 900;
+      letter-spacing: -0.6px;
+      text-transform: uppercase;
+      line-height: 0.98;
+      margin-bottom: 16px;
+    }
+
+    .tuition-desc{
+      font-size: 14px;
+      font-weight: 300;
+      line-height: 1.9;
+      opacity: .95;
+      max-width: 640px;
+      margin-bottom: 26px;
+    }
+
+    .btn-row{
+      display:flex;
+      gap: 18px;
+      flex-wrap: wrap;
+      margin-bottom: 28px;
+    }
+
+    .btn{
+      appearance:none;
+      border: 1px solid rgba(255,255,255,0.75);
+      background: rgba(255,255,255,0.95);
+      color: var(--burnt);
+      font-weight: 600;
+      font-size: 13px;
+      padding: 12px 22px;
+      border-radius: 2px;
+      cursor: pointer;
+      transition: .2s;
+      min-width: 220px;
+    }
+    .btn:hover{ transform: translateY(-1px); background:#fff; }
+
+    .btn.alt{
+      background: transparent;
+      color:#fff;
+      border-color: rgba(255,255,255,0.9);
+    }
+    .btn.alt:hover{ background: rgba(255,255,255,0.10); }
+
+    .fee-label{
+      font-size: 16px;
+      font-weight: 600;
+      margin: 14px 0 10px;
+      opacity: .95;
+    }
+
+    .fee-grid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 26px;
+      max-width: 760px;
+    }
+
+    .fee-box .price{
+      font-size: 64px;
+      font-weight: 900;
+      line-height: 0.95;
+      letter-spacing: 0.5px;
+      margin-bottom: 10px;
+    }
+
+    .fee-box .detail{
+      font-size: 13px;
+      font-weight: 300;
+      line-height: 1.75;
+      opacity: .95;
+      max-width: 320px;
+    }
+
+    .tuition-photo{
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      background: #eee center/cover no-repeat;
+      border: 6px solid rgba(255,255,255,0.85);
+      box-shadow: 0 18px 40px rgba(0,0,0,0.18);
+    }
+
+    /* =========================================
+       5.5 FOOTER
+       ========================================= */
+    .footer {
+      display: flex;
+      justify-content: space-between;
+      background-color: #fafafa;
+      padding: 40px;
+      border-top: 2px solid #eee;
+      margin-top: 20px;
+      color: #111;
+    }
+
+    .footer-left {
+      flex: 1;
+    }
+
+    .footer-heading {
+      color: #d94a26;
+      margin: 0 0 15px 0;
+      font-size: 14px;
+    }
+
+    .contact-info {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 15px;
+    }
+
+    .social-icons {
+      display: flex;
+      gap: 8px;
+      font-size: 28px;
+      color: #444;
+    }
+
+    .social-icons i {
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .social-icons i:hover {
+      color: #d94a26;
+    }
+
+    .phone-numbers {
+      font-size: 10px;
+      line-height: 1.4;
+      font-weight: bold;
+      color: #111;
+    }
+
+    .footer-logo {
+      display: flex;
+      align-items: center;
+    }
+
+    .footer-right {
+      flex: 1;
+      padding-left: 50px;
+    }
+
+    .footer-right h3 {
+      margin: 0 0 10px 0;
+      font-size: 16px;
+      color: #000;
+    }
+
+    .footer-right p {
+      margin: 0;
+      font-size: 12px;
+      line-height: 1.8;
+      color: #333;
+    }
+
+    .social-icons a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* =========================================
+       6. RESPONSIVE
+       ========================================= */
+    @media screen and (max-width: 1024px) {
+      :root{
+        --heroH: max(600px, calc(100vh - var(--headerH)));
+        --contentMax: 980px;
+
+        --heroMin: 38px;
+        --heroVW: 5.2vw;
+        --heroMax: 74px;
+        --heroPadR: 0%;
+
+        --heroTextShift: -10px;
+        --newsLift: -80px;
+
+        --gap: 28px;
+      }
+
+      .hero-banner-bg {
+        background-image:
+          linear-gradient(180deg, #000 0%, #000 25%, rgba(0,0,0,0) 70%),
+          url('banner.jpg');
+
+        background-repeat: no-repeat, no-repeat;
+
+        background-size:
+          100% 100%,
+          min(100%, var(--designW)) auto;
+
+        background-position:
+          0 0,
+          var(--heroImgPos);
+      }
+
+      .hero-text-content { padding-right: 0; text-align: left; }
+
+      .hamburger { display: block; z-index: 1001; }
+      .nav-links {
+        position: fixed; top: 0; right: -100%;
+        height: 100vh; width: 70%;
+        background: white; flex-direction: column;
+        padding: 80px 40px; align-items: flex-start;
+        transition: 0.4s; box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+      }
+      .nav-links.active { right: 0; }
+      .nav-links li { width: 100%; margin-bottom: 30px; }
+
+      .stack-card.work .inner{ grid-template-columns: 1fr; }
+      .tuition-inner{ grid-template-columns: 1fr; gap: 28px; }
+      .tuition-h1{ font-size: 42px; }
+      .fee-grid{ grid-template-columns: 1fr; }
+    }
+
+    @media screen and (max-width: 768px) {
+      :root{
+        --preNews: 100px;
+        --contentMax: 640px;
+        --heroTextShift: 0px;
+        --newsLift: -20px;
+
+        --hold: 22vh;
+        --gap: 18px;
+      }
+
+      .news-grid { grid-template-columns: 1fr; gap: 18px; }
+      .news-col-left { flex-direction: row; overflow-x: auto; padding-bottom: 15px; gap: 18px; }
+      .small-card { min-width: 85%; min-height: 170px; }
+      .large-card { min-height: 300px; }
+      .community-text { margin-top: 60px; }
+      .community-text h2 { font-size: 28px; }
+
+      .stack{ padding: 24px 0 80px; }
+      .stack-card{ position: relative; top: 0; margin-bottom: 22px; }
+      .stack-card.work .inner{ grid-template-columns: 1fr; }
+      .tuition-inner{ grid-template-columns: 1fr; gap: 22px; }
+      .tuition-h1{ font-size: 34px; }
+      .fee-grid{ grid-template-columns: 1fr; }
+      .fee-box .price{ font-size: 52px; }
+      .btn{ min-width: 0; width: 100%; }
+
+      .footer {
+        flex-direction: column;
+        padding: 30px 20px;
+        gap: 30px;
+      }
+
+      .footer-right {
+        padding-left: 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="top-bar"></div>
+    <nav class="navbar">
+      <div class="nav-container">
+        <a href="#" class="logo"><img src="logo.png" alt="Logo"></a>
+        <ul class="nav-links">
+          <li><a href="#">Home</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Academics
+            <svg class="icon" width="10" height="6" viewBox="0 0 10 6"><path d="M1 1L5 5L9 1"/></svg>
+          </a></li>
+          <li><a href="#">Admission</a></li>
+          <li><a href="#">Faculty
+            <svg class="icon" width="10" height="6" viewBox="0 0 10 6"><path d="M1 1L5 5L9 1"/></svg>
+          </a></li>
+          <li><a href="#">News
+            <svg class="icon" width="12" height="12" viewBox="0 0 24 24">
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+              <polyline points="15 3 21 3 21 9"/>
+              <line x1="10" y1="14" x2="21" y2="3"/>
+            </svg>
+          </a></li>
+        </ul>
+        <div class="hamburger" onclick="toggleMenu()">
+          <div class="line1"></div><div class="line2"></div><div class="line3"></div>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <section class="hero-banner-bg"></section>
+
+  <section class="hero-text-section">
+    <div class="hero-container-sticky">
+      <div class="hero-text-content">
+        <h1>
+          <span class="text-orange">KMITL</span><br>
+          ENGINEER OF<br>
+          IOT &<br>
+          INFORMATION
+        </h1>
+      </div>
+    </div>
+  </section>
+
+  <section class="community-section">
+    <div class="community-container">
+
+      <div class="news-grid">
+        <div class="news-col-left">
+          <article class="news-card small-card">
+            <div class="news-img" style="background-image: url('news1.jpg');"></div>
+            <div class="news-content bg-blue">
+              <h3>รางวัลนักวิจัยดีเด่นแห่งชาติ</h3>
+              <p>ศ.ดร.อภิรัฐ ศิริธราธิวัตร คณะวิศวกรรมศาสตร์...</p>
+            </div>
+          </article>
+
+          <article class="news-card small-card">
+            <div class="news-img" style="background-image: url('news2.jpg');"></div>
+            <div class="news-content bg-white">
+              <h3 class="text-dark">ทีม 'เพลย์อะโลน' นศ. IoT</h3>
+              <p class="text-dark">ผงาดคว้ารางวัลชนะเลิศ เวที Thailand Game Festival 2025</p>
+            </div>
+          </article>
+        </div>
+
+        <div class="news-col-right">
+          <article class="news-card large-card">
+            <div class="news-img-large" style="background-image: url('news3.jpg');"></div>
+            <div class="news-overlay">
+              <h3>ขอแสดงความยินดีกับ 2 นศ. IoT คว้าชัยเวที ExxonMobil Bootcathon 2025</h3>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <div class="community-text">
+        <h2>MORE FROM THE IOT<br>COMMUNITY</h2>
+        <div class="divider"></div>
+        <p>
+          จากโจทย์ปัญหาในห้องเรียนสู่การออกแบบระบบอัจฉริยะ<br>
+          ที่สะท้อนให้เห็นว่าวิศวกรรมศาสตร์เป็นได้มากกว่าที่คิด<br>
+          เตรียมความพร้อมด้วยการเรียนรู้ที่ครอบคลุมทั้ง Hardware และ Software<br>
+          มาร่วมพัฒนาทักษะทางด้าน วิศวกรรมศาสตร์
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ✅ ต่อจาก MORE FROM THE IOT COMMUNITY -->
+  <section class="stack">
+    <div class="top-rule"></div>
+
+    <article class="stack-card work" style="--i:1">
+      <div class="inner">
+        <div class="media" style="background-image:url('work1.jpg');"></div>
+        <div class="content">
+          <h3>Automatic Blending<br/>Machine</h3>
+          <p>งานตัวอย่างสำหรับแสดงโปรเจกต์/ผลงาน พร้อมคำอธิบายสั้น ๆ ตามที่ออกแบบใน Figma</p>
+          <div class="meta">IoT Project • 2025</div>
+        </div>
+      </div>
+    </article>
+
+    <article class="stack-card work" style="--i:2">
+      <div class="inner">
+        <div class="media" style="background-image:url('work2.jpg');"></div>
+        <div class="content">
+          <h3>Measurement<br/>Multimeter</h3>
+          <p>งานตัวอย่างสำหรับแสดงโปรเจกต์/ผลงาน พร้อมคำอธิบายสั้น ๆ ตามที่ออกแบบใน Figma</p>
+          <div class="meta">Instrumentation • Prototype</div>
+        </div>
+      </div>
+    </article>
+
+    <article class="stack-card work" style="--i:3">
+      <div class="inner">
+        <div class="media" style="background-image:url('work3.jpg');"></div>
+        <div class="content">
+          <h3>Safety cap</h3>
+          <p>งานตัวอย่างสำหรับแสดงโปรเจกต์/ผลงาน พร้อมคำอธิบายสั้น ๆ ตามที่ออกแบบใน Figma</p>
+          <div class="meta">Wearable • Safety</div>
+        </div>
+      </div>
+    </article>
+
+    <article class="stack-card tuition" style="--i:4">
+      <div class="tuition-inner">
+        <div class="tuition-left">
+          <div class="tuition-h1">
+            DEPARTMENT OF IOT AND<br/>
+            INFORMATION ENGINEERING
+          </div>
+
+          <div class="tuition-desc">
+            มุ่งเน้นการศึกษาการเชื่อมองค์ประกอบของโลกดิจิทัลเข้าด้วยกัน ทั้งศึกษาเรียนในหลักสูตร
+            ที่จะได้ศึกษาและปฏิบัติเกี่ยวกับด้านเทคโนโลยีระบบไอโอทีและสารสนเทศโดยอาศัยความรู้พื้นฐาน
+          </div>
+
+          <div class="btn-row">
+            <button class="btn">ดูรายละเอียดหลักสูตรปกติ</button>
+            <button class="btn">ดูรายละเอียด 2 ปริญญา</button>
+          </div>
+
+          <div class="fee-label">ค่าเทอม (ต่อภาคการศึกษา)</div>
+
+          <div class="fee-grid">
+            <div class="fee-box">
+              <div class="price">25,000฿</div>
+              <div class="detail">
+                สำหรับหลักสูตรวิศวกรรมศาสตรบัณฑิต (วศ.บ.)<br/>
+                สาขาวิศวกรรมระบบไอโอทีและสารสนเทศ
+              </div>
+            </div>
+
+            <div class="fee-box">
+              <div class="price">40,000฿</div>
+              <div class="detail">
+                สำหรับ 2 ปริญญา: วศ.บ. (IOT) + วท.บ. (ฟิสิกส์อุตสาหกรรม)<br/>
+                เรียนร่วมกับคณะวิทยาศาสตร์
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tuition-right">
+          <div class="tuition-photo" style="background-image:url('tuition-photo.jpg');"></div>
+        </div>
+      </div>
+    </article>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-left">
+      <h4 class="footer-heading">Connect with IOT KMITL</h4>
+
+      <div class="contact-info">
+        <div class="social-icons">
+          <a href="https://www.facebook.com/IOTE.KMITL" target="_blank" rel="noopener noreferrer">
+            <i class="fa-brands fa-square-facebook"></i>
+          </a>
+
+          <a href="https://www.instagram.com/kmitl.iote.official?fbclid=IwY2xjawQKS4VleHRuA2FlbQIxMABicmlkETIxd3NCTzJtVnE4ZlY3NjI5c3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHjcWmaXV3eEym0lPrs4ecofayuT7VoH3XkZOhyDJuH546tHFEoZbMlP0cS68_aem_m3Lopa6hOla_hgNYOKbWRA" target="_blank" rel="noopener noreferrer">
+            <i class="fa-brands fa-square-instagram"></i>
+          </a>
+
+          <a href="mailto:iote@kmitl.ac.th">
+            <i class="fa-solid fa-envelope"></i>
+          </a>
+
+          <a href="tel:023298000">
+            <i class="fa-solid fa-phone"></i>
+          </a>
+        </div>
+
+        <div class="phone-numbers">
+          <span>02-329-8000 ext.5129</span><br>
+          <span>02-329-8301 ext.235</span>
+        </div>
+      </div>
+
+      <div class="footer-logo">
+        <img src="IOTE.png" alt="IOTE Logo" style="height: 60px; margin-right: 15px;">
+      </div>
+    </div>
+
+    <div class="footer-right">
+      <h3>Department of IoT and Information Engineering</h3>
+      <p>
+        ภาควิชาวิศวกรรมไอโอทีและสารสนเทศ<br>
+        คณะวิศวกรรมศาสตร์ สถาบันเทคโนโลยีพระจอมเกล้าเจ้าคุณทหารลาดกระบัง<br>
+        ชั้น 12 อาคารเรียนรวม 12 ชั้น<br>
+        เลขที่ 1 ซอยฉลองกรุง 1 แขวงลาดกระบัง เขตลาดกระบัง<br>
+        กรุงเทพมหานคร 10520
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      document.querySelector('.nav-links').classList.toggle('active');
+      document.querySelector('.hamburger').classList.toggle('toggle');
+    }
+  </script>
+</body>
+</html>

@@ -172,7 +172,7 @@ a { text-decoration: none; color: inherit; }
     }
     .nav-links li {
         width: 100%;
-        border-bottom: 1px solid #eee;
+        border-bottom: none;
     }
     .nav-links li a {
         display: block;

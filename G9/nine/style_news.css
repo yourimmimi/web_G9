@@ -21,6 +21,8 @@ body {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
+a { text-decoration: none; color: inherit; }
+
 /* Navbar */
 .navbar {
     display: flex;
@@ -41,18 +43,6 @@ body {
     object-fit: contain; /* มั่นใจว่าภาพจะไม่โดนตัด */
 }
 .nav-links { list-style: none; display: flex; gap: 50px; font-size: 0.8rem; font-weight: 600; }
-
-/* จัดการตัวอักษรลิงก์ในเมนู Nav */
-.nav-links a {
-    text-decoration: none !important; /* สั่งเอาเส้นใต้ขีดๆ ออก */
-    color: var(--text-dark) !important; /* สั่งเปลี่ยนสีเป็นสีเทาเข้ม/ดำ */
-    transition: color 0.3s ease; /* ทำให้เวลาเอาเมาส์ชี้ สีจะค่อยๆ เปลี่ยนแบบนุ่มนวล */
-}
-
-/* เวลาเอาเมาส์ชี้ที่ลิงก์ ให้เปลี่ยนเป็นสีส้ม */
-.nav-links a:hover {
-    color: var(--primary-orange) !important;
-}
 
 .nav-links li:hover { 
     color: var(--primary-orange); }
@@ -923,30 +913,79 @@ body {
 
 /* 4. แท็บเล็ต iPad แนวตั้ง (768 x 1024) */
 @media screen and (max-width: 768px) {
+    .nav-links { display: none; }
+    .hamburger { display: block; }
     .navbar {
         padding: 15px 20px;
     }
-
+    .nav-links {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: white;
+        flex-direction: column;
+        gap: 0;
+        display: none; /* ซ่อนไว้ก่อน */
+        box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+    }
+    .nav-links li {
+        width: 100%;
+        border-bottom: 1px solid #eee;
+    }
+    .nav-links li a {
+        display: block;
+        padding: 15px 20px;
+        width: 100%;
+    }
     .hamburger {
         display: block;
-        color: var(--primary-orange);
     }
-
-    .nav-links {
-        display: none;
-        flex-direction: column;
-        width: 100%;
-        position: absolute;
-        top: 70px;
-        left: 0;
-        background-color: var(--bg-light);
-        padding: 20px 0;
-        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-        gap: 15px;
-    }
-
     .nav-links.active {
-        display: flex !important;
+        display: flex;
+    }
+    
+    .dropdown-menu {
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+    }
+    .dropdown-menu > a {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .dropdown-content {
+        position: relative; 
+        top: 0 !important;
+        width: 100%;
+        max-width: 100%;
+        box-shadow: none; 
+        background-color: #d95e16; 
+        
+        display: none; 
+        visibility: visible;
+        opacity: 1;
+        border-radius: 5px; 
+        padding-left: 15px; 
+    }
+
+    .dropdown-menu.align-right .dropdown-content {
+        right: auto;
+    }
+
+    .dropdown-menu:hover .dropdown-content,
+    .dropdown-menu:active .dropdown-content,
+    .dropdown-menu:focus-within .dropdown-content {
+        display: block;
+    }
+
+    .dropdown-menu:hover .arrow,
+    .dropdown-menu:active .arrow,
+    .dropdown-menu:focus-within .arrow {
+        transform: rotate(180deg);
     }
 
     .grid-container {

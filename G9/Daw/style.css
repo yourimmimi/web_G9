@@ -487,3 +487,104 @@ a { text-decoration: none; color: inherit; }
         display: flex;
     }
 }
+.footer {
+    display: flex;
+    justify-content: space-between;
+    background-color: #fafafa;
+    padding: 40px;
+    border-top: 2px solid #eee;
+    margin-top: 20px;
+}
+.footer-left {
+    flex: 1;
+}
+.footer-heading {
+    color: #d94a26;
+    margin: 0 0 15px 0;
+    font-size: 14px;
+}
+.contact-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+.social-icons {
+    display: flex;
+    gap: 8px;
+    font-size: 28px;
+    color: #444;
+}
+.social-icons i, .social-icons a {
+    cursor: pointer;
+    transition: 0.3s;
+    color: inherit;
+    text-decoration: none;
+}
+.social-icons i:hover {
+    color: #d94a26;
+}
+.phone-numbers {
+    font-size: 10px;
+    line-height: 1.4;
+    font-weight: bold;
+}
+.footer-logo {
+    display: flex;
+    align-items: center;
+}
+.footer-right {
+    flex: 1;
+    padding-left: 50px;
+}
+.footer-right h3 {
+    margin: 0 0 10px 0;
+    font-size: 16px;
+    color: #000;
+}
+.footer-right p {
+    margin: 0;
+    font-size: 12px;
+    line-height: 1.8;
+    color: #333;
+}
+/*3. iPad แนวนอน (1024 x 768)*/
+@media screen and (max-width: 1024px) {
+    .footer {
+        flex-direction: column;
+        gap: 30px;
+    }
+    .footer-right {
+        padding-left: 0;
+    }
+}
+/* 4. แท็บเล็ต iPad แนวตั้ง (768 x 1024) */
+@media screen and (max-width: 768px) {
+    .footer {
+        text-align: center;
+        padding: 40px 20px;
+    }
+
+    .contact-info, 
+    .footer-logo {
+        justify-content: center;
+    }
+}
+
+/*5. มือถือขนาดเล็ก (375 x 812) */
+@media screen and (max-width: 375px) {
+    .footer {
+        padding: 30px 15px;
+        gap: 20px;
+    }
+    .footer-heading {
+        font-size: 13px;
+    }
+    .social-icons {
+        font-size: 24px;
+        gap: 12px;
+    }
+    .footer-right h3 {
+        font-size: 15px; 
+    }
+}

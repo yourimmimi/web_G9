@@ -854,9 +854,6 @@ a { text-decoration: none; color: inherit; }
 
 /* 2. โน้ตบุ๊กทั่วไป (1366 x 768) */
 @media screen and (max-width: 1366px) {
-    .nav-links {
-        gap: 25px;
-    }
 
     .hero-main-card img {
         height: 320px;
@@ -887,11 +884,6 @@ a { text-decoration: none; color: inherit; }
 
 /* 3. iPad แนวนอน (1024 x 768) */
 @media screen and (max-width: 1024px) {
-    .nav-links {
-        gap: 15px;
-        font-size: 0.75rem;
-    }
-
     .grid-container {
         grid-template-columns: repeat(2, 1fr);
     }
@@ -1029,10 +1021,7 @@ a { text-decoration: none; color: inherit; }
     .slider-track {
         display: flex !important;
         flex-wrap: nowrap !important;
-        
-        /* 🔥 แก้ไข 1: เปลี่ยนจาก auto เป็น max-content เพื่อบังคับให้รางยาวทะลุขอบจอ */
         width: max-content !important; 
-        
         transform: none !important;
         transition: none !important;
         gap: 15px !important;
@@ -1042,8 +1031,6 @@ a { text-decoration: none; color: inherit; }
     .slider-track .card {
         flex: 0 0 85vw !important;
         max-width: 85vw !important;
-        
-        /* 🔥 แก้ไข 2: สั่งห้ามการ์ดหดตัวเด็ดขาด (ป้องกันการโดนบีบจนเลื่อนไม่ได้) */
         flex-shrink: 0 !important; 
         scroll-snap-align: center;
     }
@@ -1055,53 +1042,8 @@ a { text-decoration: none; color: inherit; }
 }
 
 /* 5. มือถือ (375 x 812) */
-@media screen and (max-width: 375px) {
+@media (max-width: 375px) {
 
-    .nav-links { display: none; }
-    .hamburger { display: block; }
-    
-    .dropdown-menu {
-        flex-direction: column;
-        align-items: flex-start;
-        width: 100%;
-    }
-    .dropdown-menu > a {
-        width: 100%;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-
-    .dropdown-content {
-        position: relative; 
-        top: 0 !important;
-        width: 100%;
-        max-width: 100%;
-        box-shadow: none; 
-        background-color: #d95e16; 
-        
-        display: none; 
-        visibility: visible;
-        opacity: 1;
-        border-radius: 5px; 
-        padding-left: 15px; 
-    }
-
-    .dropdown-menu.align-right .dropdown-content {
-        right: auto;
-    }
-
-    .dropdown-menu:hover .dropdown-content,
-    .dropdown-menu:active .dropdown-content,
-    .dropdown-menu:focus-within .dropdown-content {
-        display: block;
-    }
-
-    .dropdown-menu:hover .arrow,
-    .dropdown-menu:active .arrow,
-    .dropdown-menu:focus-within .arrow {
-        transform: rotate(180deg);
-    }
     .nav-links { display: none; }
     .hamburger { display: block; }
     

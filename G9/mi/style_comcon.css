@@ -18,116 +18,6 @@ body { background-color: #f8f8f8; color: #333; }
 
 a { text-decoration: none; color: inherit; }
 
-/* Navbar */
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 40px;
-    background: white;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-    border-top: 20px solid #F37021; /* แถบส้มด้านบนสุด */
-    position: sticky;
-    top: 0;
-    z-index: 100;
-}
-.navbar .logo img {
-    width: 200px;       /* ปรับตัวเลขนี้เพื่อลด/เพิ่มขนาด (แนะนำ 150px - 200px) */
-    height: auto;       /* ให้ความสูงปรับตามอัตโนมัติ สัดส่วนจะไม่เพี้ยน */
-    display: block;     /* จัดระเบียบการวาง */
-    object-fit: contain; /* มั่นใจว่าภาพจะไม่โดนตัด */
-}
-.nav-links { list-style: none; display: flex; gap: 50px; font-size: 0.8rem; font-weight: 600; }
-
-.nav-links li:hover { 
-    color: var(--primary-orange); }
-     
-.hamburger { 
-    display: none; 
-    cursor: pointer; 
-    font-size: 1.8rem; 
-}
-
-/* Dropdown Menu */
-.dropdown-menu {
-    position: relative;
-    display: flex; 
-    align-items: center;
-    height: 100%;
-}
-
-.arrow {
-    font-size: 0.7em;
-    margin-left: 5px;
-    vertical-align: middle;
-    display: inline-block;
-    transition: transform 0.3s ease;
-}
-
-.dropdown-menu:hover .arrow {
-    transform: rotate(180deg);
-}
-
-.dropdown-content {
-    visibility: hidden;
-    opacity: 0;
-    position: absolute;
-    background-color: var(--primary-orange, #F37021);
-    min-width: 250px;
-    max-width: 350px; 
-    box-shadow: 0px 10px 20px rgba(0,0,0,0.15); 
-    z-index: 1000;
-    top: 100%; 
-    left: 0;
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    border-radius: 5px; 
-    overflow: hidden; 
-    transition: all 0.3s ease; 
-}
-
-.dropdown-content li {
-    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-}
-
-.dropdown-content li:last-child {
-    border-bottom: none;
-}
-
-.dropdown-content li a {
-    color: white !important;
-    padding: 15px 20px;
-    text-decoration: none;
-    display: block;
-    font-size: 0.9rem;
-    font-weight: 500;
-    line-height: 1.4; 
-    transition: background-color 0.3s, padding-left 0.3s; 
-}
-
-.dropdown-content li a:hover {
-    background-color: #d95e16; 
-    padding-left: 25px; 
-}
-
-
-.dropdown-menu:hover .dropdown-content {
-    visibility: visible;
-    opacity: 1;
-    top: 100%;
-}
-
-
-.dropdown-menu:hover .arrow {
-    transform: rotate(180deg);
-}
-
-.dropdown-menu.align-right .dropdown-content {
-    align-items: center;
-    left: auto;
-    right: 0;
-}
 
 /* ================== Hero Section ================== */
 .hero-section {
@@ -346,51 +236,6 @@ a { text-decoration: none; color: inherit; }
 /* ================== Mobile Responsive ================== */
 
 @media (max-width: 768px) {
-    .nav-links { display: none; }
-    .hamburger { display: block; }
-    
-    .dropdown-menu {
-        flex-direction: column;
-        align-items: flex-start;
-        width: 100%;
-    }
-    .dropdown-menu > a {
-        width: 100%;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-
-    .dropdown-content {
-        position: relative; 
-        top: 0 !important;
-        width: 100%;
-        max-width: 100%;
-        box-shadow: none; 
-        background-color: #d95e16; 
-        
-        display: none; 
-        visibility: visible;
-        opacity: 1;
-        border-radius: 5px; 
-        padding-left: 15px; 
-    }
-
-    .dropdown-menu.align-right .dropdown-content {
-        right: auto;
-    }
-
-    .dropdown-menu:hover .dropdown-content,
-    .dropdown-menu:active .dropdown-content,
-    .dropdown-menu:focus-within .dropdown-content {
-        display: block;
-    }
-
-    .dropdown-menu:hover .arrow,
-    .dropdown-menu:active .arrow,
-    .dropdown-menu:focus-within .arrow {
-    transform: rotate(180deg);
-    }
 
     .hero-overlay h1 { font-size: 1.8rem; }
     .hero-overlay h2 { font-size: 1.2rem; }
@@ -413,7 +258,7 @@ a { text-decoration: none; color: inherit; }
     .footer-right {
         padding-left: 0;
     }
-     .modal-content {
+    .modal-content {
         width: 85%;
         margin: 15% auto;
         padding: 25px;
@@ -432,23 +277,4 @@ a { text-decoration: none; color: inherit; }
     .navbar { padding: 15px 20px; }
     .navbar .logo img { width: 150px; }
 
-    /* ปรับแต่ง Pop-up Modal ให้พอดีกับหน้าจอมือถือ */
-    .modal-content {
-        width: 95%; 
-        margin: 10% auto; 
-        padding: 20px; 
-    }
-    .modal-content h3 {
-        font-size: 1.2rem; 
-        margin-right: 20px; 
-    }
-    .modal-content p {
-        font-size: 0.9rem;
-        max-height: 50vh;
-    }
-    .close-btn {
-        top: 5px;
-        right: 15px;
-        font-size: 30px;
-    }
 }

@@ -1,8 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
     
-    // ==========================================
-    // 1. ข้อมูล (Data)
-    // ==========================================
     const programsData = [
         {
             id: 'iotmimi', 
@@ -45,9 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
 }
     ];
 
-    // ==========================================
-    // 2. Render Programs (สร้างการ์ดหลักสูตร)
-    // ==========================================
+
     const programContainer = document.getElementById('program-container');
     if(programContainer) {
         programContainer.innerHTML = ''; // เคลียร์ Loading...
@@ -67,9 +62,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // ==========================================
-    // 3. Render News & Pop-up Modal (สร้างข่าวและระบบคลิก)
-    // ==========================================
     const newsContainer = document.getElementById('news-container');
     const modal = document.getElementById('news-modal');
     const modalImg = document.getElementById('modal-img');
@@ -80,7 +72,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if(newsContainer) {
         newsContainer.innerHTML = ''; 
         
-        // 3.1 สร้าง HTML ข่าว (แสดงแค่ title บนหน้าเว็บ)
         newsData.forEach((news, index) => {
             const newsHTML = `
                 <div class="news-card" data-index="${index}">
@@ -91,59 +82,63 @@ document.addEventListener('DOMContentLoaded', () => {
             newsContainer.innerHTML += newsHTML;
         });
 
-        // 3.2 ดักจับการคลิกที่หัวข้อข่าวแต่ละอัน
+
         const newsCards = document.querySelectorAll('.news-card');
         newsCards.forEach(card => {
             card.addEventListener('click', function() {
                 const index = this.getAttribute('data-index');
                 const selectedNews = newsData[index];
                 
-                // นำข้อมูลไปใส่ใน Popup
+           
                 modalImg.src = selectedNews.img;
                 modalTitle.innerText = selectedNews.title;
                 modalDesc.innerText = selectedNews.desc;
                 
-                // สั่งให้ Popup แสดงขึ้นมา
+           
                 modal.style.display = "block";
             });
         });
     }
 
-    // 3.3 ปิด Modal เมื่อกดปุ่มกากบาท (X)
     if(closeBtn) {
         closeBtn.addEventListener('click', () => {
             modal.style.display = "none";
         });
     }
 
-    // 3.4 ปิด Modal เมื่อกดพื้นที่สีดำด้านนอก
     window.addEventListener('click', (event) => {
         if (event.target == modal) {
             modal.style.display = "none";
         }
     });
 
-    // ==========================================
-    // 4. Mobile Menu Handling (Hamburger)
-    // ==========================================
-    const hamburger = document.querySelector('.hamburger');
-    const navLinks = document.querySelector('.nav-links');
-
-    if (hamburger && navLinks) {
-        hamburger.addEventListener('click', () => {
-            if (navLinks.style.display === 'flex') {
-                navLinks.style.display = 'none';
-            } else {
-                navLinks.style.display = 'flex';
-                navLinks.style.flexDirection = 'column';
-                navLinks.style.position = 'absolute';
-                navLinks.style.top = '60px';
-                navLinks.style.right = '0';
-                navLinks.style.background = 'white';
-                navLinks.style.width = '100%';
-                navLinks.style.padding = '20px';
-                navLinks.style.boxShadow = '0 5px 5px rgba(0,0,0,0.1)';
+fetch('navbar.html')
+    .then(response => response.text())
+    .then(data => {
+        const navbarContainer = document.getElementById('navbar');
+        if (navbarContainer) {
+            navbarContainer.innerHTML = data;
+            const hamburger = navbarContainer.querySelector('.hamburger');
+            const navLinks = navbarContainer.querySelector('.nav-links');
+            if (hamburger && navLinks) {
+                hamburger.addEventListener('click', () => {
+                    
+                    if (navLinks.style.display === 'flex') {
+                        navLinks.style.display = 'none';
+                    } else {
+                        navLinks.style.display = 'flex';
+                        navLinks.style.flexDirection = 'column';
+                        navLinks.style.position = 'absolute';
+                        navLinks.style.top = '60px';
+                        navLinks.style.right = '0';
+                        navLinks.style.background = 'white';
+                        navLinks.style.width = '100%';
+                        navLinks.style.padding = '20px';
+                        navLinks.style.boxShadow = '0 5px 5px rgba(0,0,0,0.1)';
+                    }
+                });
             }
-        });
-    }
+        }
+    })
+    .catch(error => console.error('Error loading navbar:', error));
 });

@@ -22,7 +22,8 @@ body {
 
 a { text-decoration: none; color: inherit; }
 
-/* 1. Navigation Bar */
+
+/* Navbar */
 .navbar {
     display: flex;
     justify-content: space-between;
@@ -30,36 +31,28 @@ a { text-decoration: none; color: inherit; }
     padding: 15px 40px;
     background: white;
     box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-    border-top: 20px solid #F37021;
+    border-top: 20px solid #F37021; /* แถบส้มด้านบนสุด */
     position: sticky;
     top: 0;
-    z-index: 100;
+    z-index: 1000;
+    position: relative;
 }
 .navbar .logo img {
-    width: 200px;
-    height: auto;
-    display: block;
-    object-fit: contain; 
+    width: 200px;       /* ปรับตัวเลขนี้เพื่อลด/เพิ่มขนาด (แนะนำ 150px - 200px) */
+    height: auto;       /* ให้ความสูงปรับตามอัตโนมัติ สัดส่วนจะไม่เพี้ยน */
+    display: block;     /* จัดระเบียบการวาง */
+    object-fit: contain; /* มั่นใจว่าภาพจะไม่โดนตัด */
 }
 .nav-links { list-style: none; display: flex; gap: 50px; font-size: 0.8rem; font-weight: 600; }
 
 .nav-links li:hover { 
     color: var(--primary-orange); }
-
+     
 
 .hamburger { display: none; cursor: pointer; font-size: 1.5rem; }
 
-.dropdown-menu {
-    position: relative;
-    display: inline-block;
-}
+/*Dropdown Menu Styles */
 
-
-.arrow {
-    font-size: 0.7em;
-    margin-left: 5px;
-    vertical-align: middle;
-}
 .dropdown-menu {
     position: relative;
     display: flex; 
@@ -139,52 +132,7 @@ a { text-decoration: none; color: inherit; }
     left: auto;
     right: 0;
 }
-@media (max-width: 768px) {
-    .nav-links { display: none; }
-    .hamburger { display: block; }
-    .dropdown-menu {
-        flex-direction: column;
-        align-items: flex-start;
-        width: 100%;
-    }
-    .dropdown-menu > a {
-        width: 100%;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
 
-    .dropdown-content {
-        position: relative; 
-        top: 0 !important;
-        width: 100%;
-        max-width: 100%;
-        box-shadow: none; 
-        background-color: #d95e16; 
-
-        display: none; 
-        visibility: visible;
-        opacity: 1;
-        border-radius: 5px; 
-        padding-left: 15px; 
-    }
-
-    .dropdown-menu.align-right .dropdown-content {
-        right: auto;
-    }
-
-    .dropdown-menu:hover .dropdown-content,
-    .dropdown-menu:active .dropdown-content,
-    .dropdown-menu:focus-within .dropdown-content {
-        display: block;
-    }
-
-    .dropdown-menu:hover .arrow,
-    .dropdown-menu:active .arrow,
-    .dropdown-menu:focus-within .arrow {
-        transform: rotate(180deg);
-    }
-}
 
 /* 1. จัดการกรอบนอกสุด (header) ให้เป็นจุดอ้างอิงหลัก */
 .hero {
@@ -240,14 +188,7 @@ a { text-decoration: none; color: inherit; }
 .hero-content h1 { font-size: 2.5rem; }
 .hero-content h2 { font-size: 1.5rem; font-weight: 400; }
 
-/* 6. Responsive สำหรับมือถือ */
-@media screen and (max-width: 768px) {
-    .hero {
-        height: 50vh;
-    }
-    .hero-content h1 { font-size: 1.8rem; }
-    .hero-content h2 { font-size: 1.2rem; }
-}
+
 /* 3. Admission Section */
 .admission-section {
     padding: 50px 5%;
@@ -331,37 +272,6 @@ a { text-decoration: none; color: inherit; }
     line-height: 1.6;
 }
 
-/* --- Responsive Design สำหรับมือถือ --- */
-@media screen and (max-width: 768px) {
-    .nav-links {
-        display: none; /* ซ่อนเมนูไว้ก่อนบนมือถือ */
-        flex-direction: column;
-        width: 100%;
-        position: absolute;
-        top: 70px;
-        left: 0;
-        background: white;
-        padding: 20px 0;
-    }
-    .nav-links.active {
-        display: flex; /* แสดงเมื่อคลิกปุ่ม */
-    }
-    .menu-toggle {
-        display: block;
-    }
-    .bar {
-        width: 25px;
-        height: 3px;
-        background: var(--dark-text);
-        margin: 5px auto;
-        display: block;
-    }
-    .hero-content h1 { font-size: 1.8rem; }
-    .hero-content h2 { font-size: 1.2rem; }
-    .admission-section {
-        background: white; /* ปิดลูกเล่นพื้นหลังบนมือถือเพื่อความอ่านง่าย */
-    }
-}
 /* 5. Admission Rounds Section */
 .admission-rounds {
     padding: 40px 5% 80px; /* เว้นระยะบน ซ้าย-ขวา ล่าง */
@@ -415,11 +325,7 @@ a { text-decoration: none; color: inherit; }
     background: linear-gradient(180deg, #fcc086 0%, #f48b32 100%); /* สีสว่างขึ้น */
 }
 
-/* --- สำหรับหน้าจอมือถือ --- */
-@media screen and (max-width: 768px) {
-    .round-title { font-size: 1.8rem; }
-    .project-btn { font-size: 1rem; padding: 12px 15px; }
-}
+
 /* 6. Footer / Contact Section */
  /*=========================================*/
 .footer {
@@ -507,17 +413,8 @@ a { text-decoration: none; color: inherit; }
     color: #333;
 }
 
-/* Responsive สำหรับมือถือ */
-@media screen and (max-width: 768px) {
-.footer {
-        flex-direction: column; /* เปลี่ยนจากซ้าย-ขวา เป็น บน-ล่าง */
-        padding: 30px 20px;
-        gap: 30px;
-    }
-    .footer-right {
-        padding-left: 0;
-    }
-}
+
+
 /* =========================================
    หน้า Project Detail (รายละเอียดโครงการ)
    ========================================= */
@@ -600,4 +497,106 @@ a { text-decoration: none; color: inherit; }
     background-color: #e66c15; /* สีส้มเข้มขึ้น */
     transform: translateY(-2px); /* ปุ่มลอยขึ้นนิดนึง */
     box-shadow: 0
+}
+@media screen and (max-width: 768px) {
+    .nav-links { display: none; }
+    .hamburger { display: block; }
+    .nav-links.active {
+    display: flex !important;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;       /* เริ่มต้นจากขอบล่างของ .navbar พอดี */
+    left: 0;
+    width: 100%;     /* กว้างเท่ากับหน้าจอพอดี */
+    background: white;
+    padding: 10px 0; /* เคลียร์ padding เดิม */
+    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+    z-index: 999;
+    }
+
+    .dropdown-menu {
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+    }
+    .dropdown-menu > a {
+        width: 100%;
+        display: flex;
+        /* justify-content: space-between; */
+        align-items: center;
+    }
+
+    .dropdown-content {
+        position: relative; 
+        top: 0 !important;
+        width: 100%;
+        max-width: 100%;
+        box-shadow: none; 
+        background-color: #d95e16; 
+        
+        display: none; 
+        visibility: visible;
+        opacity: 1;
+        border-radius: 5px; 
+        padding-left: 15px; 
+    }
+
+    .dropdown-menu.align-right .dropdown-content {
+        right: auto;
+    }
+
+    .dropdown-menu:hover .dropdown-content,
+    .dropdown-menu:active .dropdown-content,
+    .dropdown-menu:focus-within .dropdown-content {
+        display: block;
+    }
+
+    .dropdown-menu:hover .arrow,
+    .dropdown-menu:active .arrow,
+    .dropdown-menu:focus-within .arrow {
+        transform: rotate(180deg);
+    }
+    .hero {
+        height: 50vh;
+    }
+    .hero-content h1 { font-size: 1.8rem; }
+    .hero-content h2 { font-size: 1.2rem; }
+    .round-title { font-size: 1.8rem; }
+    .project-btn { font-size: 1rem; padding: 12px 15px; }
+    .nav-links {
+        display: none; /* ซ่อนเมนูไว้ก่อนบนมือถือ */
+        flex-direction: column;
+        width: 100%;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        background: white;
+        padding: 20px 0;
+    }
+    .nav-links.active {
+        display: flex; /* แสดงเมื่อคลิกปุ่ม */
+    }
+    .menu-toggle {
+        display: block;
+    }
+    .bar {
+        width: 25px;
+        height: 3px;
+        background: var(--dark-text);
+        margin: 5px auto;
+        display: block;
+    }
+    .hero-content h1 { font-size: 1.8rem; }
+    .hero-content h2 { font-size: 1.2rem; }
+    .admission-section {
+        background: white; /* ปิดลูกเล่นพื้นหลังบนมือถือเพื่อความอ่านง่าย */
+    }
+    .footer {
+        flex-direction: column; /* เปลี่ยนจากซ้าย-ขวา เป็น บน-ล่าง */
+        padding: 30px 20px;
+        gap: 30px;
+    }
+    .footer-right {
+        padding-left: 0;
+    }
 }

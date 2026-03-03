@@ -786,6 +786,13 @@ header {
   box-shadow: 0 10px 20px rgba(0,0,0,0.12);
 }
 
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
 /* =========================================
    5.5 FOOTER
    ========================================= */
@@ -1113,6 +1120,8 @@ header {
 
   
 }
+
+
 
 /* =========================================
    6. LARGE DESKTOP

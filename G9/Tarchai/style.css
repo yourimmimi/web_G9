@@ -5,7 +5,7 @@
   --headerH: 110px;
   --preNews: 500px;
   --heroH: max(500px, calc(100vh - var(--headerH)));
-  --heroTextTop: 180px;
+  --heroTextTop: 140px;
 
   --designW: 1905px;
   --heroImgPos: 50% 0%;
@@ -664,7 +664,7 @@ header {
 .stack-card.tuition {
   position: relative;
   top: auto;
-  z-index: 1;
+  z-index: 30;   /* ให้ขึ้นมาทับการ์ด sticky ก่อนหน้า */
   margin: 0;
   transform: none;
   background: var(--burnt);

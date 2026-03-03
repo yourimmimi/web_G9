@@ -27,3 +27,10 @@ window.addEventListener('resize', () => {
     dropdownMenus.forEach((menu) => menu.classList.remove('open'));
   }
 });
+
+// สำหรับปิดเมนูอัตโนมัติเมื่อกดลิงก์ (เผื่อใช้หน้าเดียวแบบ Scroll)
+document.querySelectorAll('.nav-links li a').forEach(link => {
+    link.addEventListener('click', () => {
+        navLinks.classList.remove('active');
+    });
+});

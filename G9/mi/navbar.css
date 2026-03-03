@@ -133,7 +133,19 @@ a { text-decoration: none; color: inherit; }
 @media (max-width: 768px) {
     .nav-links { display: none; }
     .hamburger { display: block; }
-    
+    .nav-links.active {
+    display: flex !important;
+    flex-direction: column;
+    position: absolute;
+    top: 60px;
+    left: 0; /* เปลี่ยนจาก right: 0 เป็น left: 0 เพื่อให้คุมจากซ้ายไปขวา */
+    width: 100vw; /* ใช้ vw เพื่อให้กว้างเต็มจอภาพแน่นอน */
+    background: white;
+    padding: 0; /* เคลียร์ padding เดิม */
+    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+    z-index: 999;
+}
+
     .dropdown-menu {
         flex-direction: column;
         align-items: flex-start;

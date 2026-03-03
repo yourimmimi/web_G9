@@ -118,14 +118,11 @@ fetch('navbar.html')
         const navbarContainer = document.getElementById('navbar');
         if (navbarContainer) {
             navbarContainer.innerHTML = data;
-
-            // ย้าย Logic Hamburger มาไว้ที่นี่!
             const hamburger = navbarContainer.querySelector('.hamburger');
             const navLinks = navbarContainer.querySelector('.nav-links');
-
             if (hamburger && navLinks) {
                 hamburger.addEventListener('click', () => {
-                    // แนะนำให้ใช้การ Toggle Class แทนการแก้ Style โดยตรงจะจัดการง่ายกว่าครับ
+                    
                     if (navLinks.style.display === 'flex') {
                         navLinks.style.display = 'none';
                     } else {

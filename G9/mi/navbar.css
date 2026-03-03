@@ -32,7 +32,8 @@ a { text-decoration: none; color: inherit; }
     border-top: 20px solid #F37021; /* แถบส้มด้านบนสุด */
     position: sticky;
     top: 0;
-    z-index: 100;
+    z-index: 1000;
+    position: relative;
 }
 .navbar .logo img {
     width: 200px;       /* ปรับตัวเลขนี้เพื่อลด/เพิ่มขนาด (แนะนำ 150px - 200px) */
@@ -137,14 +138,14 @@ a { text-decoration: none; color: inherit; }
     display: flex !important;
     flex-direction: column;
     position: absolute;
-    top: 60px;
-    left: 0; /* เปลี่ยนจาก right: 0 เป็น left: 0 เพื่อให้คุมจากซ้ายไปขวา */
-    /* width: 100vw; */
+    top: 100%;       /* เริ่มต้นจากขอบล่างของ .navbar พอดี */
+    left: 0;
+    width: 100%;     /* กว้างเท่ากับหน้าจอพอดี */
     background: white;
     padding: 0; /* เคลียร์ padding เดิม */
     box-shadow: 0 5px 10px rgba(0,0,0,0.1);
     z-index: 999;
-}
+    }
 
     .dropdown-menu {
         flex-direction: column;

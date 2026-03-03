@@ -129,7 +129,7 @@ fetch('navbar.html')
                         navLinks.style.display = 'flex';
                         navLinks.style.flexDirection = 'column';
                         navLinks.style.position = 'absolute';
-                        navLinks.style.top = '60px';
+                        navLinks.style.top = '90px';
                         navLinks.style.right = '0';
                         navLinks.style.background = 'white';
                         navLinks.style.width = '100%';

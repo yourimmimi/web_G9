@@ -199,6 +199,7 @@ a { text-decoration: none; color: inherit; }
 }
 
 .section-title {
+   font-family: 'Times New Roman', Times, serif; /* ใช้ฟอนต์มีหัวคล้ายในรูป */
     color: var(--primary-orange);
     font-size: 2.5rem;
     margin-bottom: 40px;
@@ -253,8 +254,10 @@ a { text-decoration: none; color: inherit; }
 }
 
 .program-details h2 {
+    font-family: 'Times New Roman', Times, serif; /* ใช้ฟอนต์มีหัวคล้ายในรูป */
     color: var(--primary-orange);
-    margin-bottom: 20px;
+    margin-bottom: 30px;
+    font-size: 2.5rem; /* เพิ่มบรรทัดนี้เข้าไป ปรับตัวเลขเพื่อขยายหรือย่อขนาดได้ตามต้องการครับ */
 }
 
 .orange-box {

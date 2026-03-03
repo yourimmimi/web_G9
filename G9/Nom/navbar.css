@@ -116,6 +116,9 @@ a { text-decoration: none; color: inherit; }
     right: 0;
 }
 @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .hamburger { display: block; }
+    
     .dropdown-menu {
         flex-direction: column;
         align-items: flex-start;
@@ -124,9 +127,10 @@ a { text-decoration: none; color: inherit; }
     .dropdown-menu > a {
         width: 100%;
         display: flex;
-        /* justify-content: space-between; */
+        justify-content: space-between;
         align-items: center;
     }
+
     .dropdown-content {
         position: relative; 
         top: 0 !important;
@@ -134,53 +138,28 @@ a { text-decoration: none; color: inherit; }
         max-width: 100%;
         box-shadow: none; 
         background-color: #d95e16; 
-
+        
         display: none; 
         visibility: visible;
         opacity: 1;
         border-radius: 5px; 
         padding-left: 15px; 
     }
+
     .dropdown-menu.align-right .dropdown-content {
         right: auto;
     }
+
     .dropdown-menu:hover .dropdown-content,
     .dropdown-menu:active .dropdown-content,
     .dropdown-menu:focus-within .dropdown-content {
         display: block;
     }
+
     .dropdown-menu:hover .arrow,
     .dropdown-menu:active .arrow,
     .dropdown-menu:focus-within .arrow {
         transform: rotate(180deg);
     }
-    .navbar {
-        padding: 15px 20px;
-    }
-    .nav-links {
-        position: absolute;
-        top: 100%;
-        left: 0;
-        width: 100%;
-        background: white;
-        flex-direction: column;
-        gap: 0;
-        display: none; /* ซ่อนไว้ก่อน */
-        box-shadow: 0 5px 10px rgba(0,0,0,0.1);
-    }
-    .nav-links li {
-        width: 100%;
-        border-bottom: none;
-    }
-    .nav-links li a {
-        display: block;
-        padding: 15px 20px;
-        width: 100%;
-    }
-    .hamburger {
-        display: block;
-    }
-    .nav-links.active {
-        display: flex;
-    }
+    
 }

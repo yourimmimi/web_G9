@@ -416,77 +416,12 @@ a { text-decoration: none; color: inherit; }
 }
 
 /* --- สำหรับหน้าจอมือถือ --- */
-@media (max-width: 768px) {
-    .dropdown-menu {
-        flex-direction: column;
-        align-items: flex-start;
-        width: 100%;
-    }
-    .dropdown-menu > a {
-        width: 100%;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-    .dropdown-content {
-        position: relative; 
-        top: 0 !important;
-        width: 100%;
-        max-width: 100%;
-        box-shadow: none; 
-        background-color: #d95e16; 
-
-        display: none; 
-        visibility: visible;
-        opacity: 1;
-        border-radius: 5px; 
-        padding-left: 15px; 
-    }
-    .dropdown-menu.align-right .dropdown-content {
-        right: auto;
-    }
-    .dropdown-menu:hover .dropdown-content,
-    .dropdown-menu:active .dropdown-content,
-    .dropdown-menu:focus-within .dropdown-content {
-        display: block;
-    }
-    .dropdown-menu:hover .arrow,
-    .dropdown-menu:active .arrow,
-    .dropdown-menu:focus-within .arrow {
-        transform: rotate(180deg);
-    }
+@media screen and (max-width: 768px) {
+    .round-title { font-size: 1.8rem; }
+    .project-btn { font-size: 1rem; padding: 12px 15px; }
 }
-@media (max-width: 768px) {
-    .navbar {
-        padding: 15px 20px;
-    }
-    .nav-links {
-        position: absolute;
-        top: 100%;
-        left: 0;
-        width: 100%;
-        background: white;
-        flex-direction: column;
-        gap: 0;
-        display: none; /* ซ่อนไว้ก่อน */
-        box-shadow: 0 5px 10px rgba(0,0,0,0.1);
-    }
-    .nav-links li {
-        width: 100%;
-        border-bottom: 1px solid #eee;
-    }
-    .nav-links li a {
-        display: block;
-        padding: 15px 20px;
-        width: 100%;
-    }
-    .hamburger {
-        display: block;
-    }
-    .nav-links.active {
-        display: flex;
-    }
-}
+/* 6. Footer / Contact Section */
+ /*=========================================*/
 .footer {
     display: flex;
     justify-content: space-between;
@@ -495,96 +430,174 @@ a { text-decoration: none; color: inherit; }
     border-top: 2px solid #eee;
     margin-top: 20px;
 }
+
 .footer-left {
     flex: 1;
 }
+
 .footer-heading {
     color: #d94a26;
     margin: 0 0 15px 0;
     font-size: 14px;
 }
+
 .contact-info {
     display: flex;
     align-items: center;
     gap: 15px;
     margin-bottom: 15px;
 }
+
 .social-icons {
     display: flex;
     gap: 8px;
     font-size: 28px;
     color: #444;
 }
-.social-icons i, .social-icons a {
+
+/* รองรับทั้งการใช้ไอคอน <i> และรูปภาพ <img> */
+.social-icons i {
     cursor: pointer;
     transition: 0.3s;
-    color: inherit;
-    text-decoration: none;
+} 
+.social-icons img {
+    cursor: pointer;
+    transition: 0.3s;
 }
+
 .social-icons i:hover {
     color: #d94a26;
 }
+
+.social-icons img:hover {
+    transform: scale(1.1); /* เพิ่มลูกเล่นให้รูปภาพขยายเวลานำเมาส์ไปชี้ */
+}
+
+.social-icons a {
+    color: inherit; 
+    text-decoration: none; 
+}
+
 .phone-numbers {
     font-size: 10px;
     line-height: 1.4;
     font-weight: bold;
 }
+
 .footer-logo {
     display: flex;
     align-items: center;
 }
+
 .footer-right {
     flex: 1;
     padding-left: 50px;
 }
+
 .footer-right h3 {
     margin: 0 0 10px 0;
     font-size: 16px;
     color: #000;
 }
+
 .footer-right p {
     margin: 0;
     font-size: 12px;
     line-height: 1.8;
     color: #333;
 }
-/*3. iPad แนวนอน (1024 x 768)*/
-@media screen and (max-width: 1024px) {
-    .footer {
-        flex-direction: column;
+
+/* Responsive สำหรับมือถือ */
+@media screen and (max-width: 768px) {
+.footer {
+        flex-direction: column; /* เปลี่ยนจากซ้าย-ขวา เป็น บน-ล่าง */
+        padding: 30px 20px;
         gap: 30px;
     }
     .footer-right {
         padding-left: 0;
     }
 }
-/* 4. แท็บเล็ต iPad แนวตั้ง (768 x 1024) */
-@media screen and (max-width: 768px) {
-    .footer {
-        text-align: center;
-        padding: 40px 20px;
-    }
+/* =========================================
+   หน้า Project Detail (รายละเอียดโครงการ)
+   ========================================= */
 
-    .contact-info, 
-    .footer-logo {
-        justify-content: center;
-    }
+/* คุมความกว้างของหน้าไม่ให้ยืดเกินไป */
+.detail-container {
+    max-width: 900px;
+    margin: 50px auto; /* ขยับลงมาจากแถบเมนูด้านบน */
+    padding: 0 20px;
 }
 
-/*5. มือถือขนาดเล็ก (375 x 812) */
-@media screen and (max-width: 375px) {
-    .footer {
-        padding: 30px 15px;
-        gap: 20px;
-    }
-    .footer-heading {
-        font-size: 13px;
-    }
-    .social-icons {
-        font-size: 24px;
-        gap: 12px;
-    }
-    .footer-right h3 {
-        font-size: 15px; 
-    }
+/* กล่องสีเทาใส่เนื้อหา */
+.gray-box {
+    background-color: #dfdfdf; /* สีเทาอ่อนตามแบบ */
+    padding: 40px;
+    border-radius: 10px; /* ขอบมน */
+    color: #666; /* สีตัวอักษรเทาเข้ม */
+    margin-bottom: 40px;
+}
+
+/* หัวข้อภายในกล่องสีเทา */
+.gray-box h3 {
+    color: #777;
+    margin-top: 25px;
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+}
+
+.gray-box h3:first-child {
+    margin-top: 0; /* เอาขอบด้านบนของหัวข้อแรกออก */
+}
+
+/* จัดระยะห่างของข้อความและลิสต์ */
+.gray-box p, 
+.gray-box ul {
+    line-height: 1.6;
+    margin-bottom: 15px;
+    font-size: 1rem;
+    font-weight: 600; /* ทำให้ตัวหนังสือดูหนาขึ้นตามแบบ */
+}
+
+.gray-box ul {
+    margin-left: 30px; /* ขยับจุด Bullet เข้ามา */
+}
+
+/* ลิงก์รายละเอียดเพิ่มเติม */
+.gray-box a {
+    color: #777;
+    text-decoration: underline; /* มีเส้นใต้ */
+    font-weight: bold;
+    word-break: break-all; /* ป้องกันลิงก์ยาวทะลุกล่องในจอมือถือ */
+}
+
+.gray-box a:hover {
+    color: var(--primary-orange); /* เวลาเอาเมาส์ชี้ให้เปลี่ยนเป็นสีส้ม */
+}
+
+/* กล่องครอบปุ่มย้อนกลับ เพื่อจัดให้อยู่กึ่งกลาง */
+.button-container {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+/* หน้าตาปุ่ม GO BACK */
+.go-back-btn {
+    display: inline-block;
+    background-color: var(--primary-orange);
+    color: white;
+    padding: 12px 40px;
+    border-radius: 30px; /* ขอบมนเป็นทรงแคปซูล */
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.1rem;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* เงาใต้ปุ่ม */
+    transition: all 0.3s ease;
+}
+
+/* เอฟเฟกต์ตอนชี้เมาส์ที่ปุ่ม */
+.go-back-btn:hover {
+    background-color: #e66c15; /* สีส้มเข้มขึ้น */
+    transform: translateY(-2px); /* ปุ่มลอยขึ้นนิดนึง */
+    box-shadow: 0
 }

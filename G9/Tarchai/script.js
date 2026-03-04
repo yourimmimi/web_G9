@@ -2,6 +2,9 @@ const hamburger = document.querySelector('.hamburger');
 const navLinks = document.querySelector('.nav-links');
 const dropdownMenus = document.querySelectorAll('.dropdown-menu');
 
+/* =========================================
+   MOBILE NAV
+   ========================================= */
 if (hamburger && navLinks) {
   hamburger.addEventListener('click', () => {
     if (window.innerWidth <= 768) {
@@ -33,7 +36,6 @@ dropdownMenus.forEach((menu) => {
       if (window.innerWidth <= 768) {
         e.preventDefault();
 
-        /* ปิดอันอื่นก่อน */
         dropdownMenus.forEach((otherMenu) => {
           if (otherMenu !== menu) {
             otherMenu.classList.remove('open');
@@ -51,6 +53,7 @@ window.addEventListener('resize', () => {
     if (navLinks) {
       navLinks.style.display = '';
       navLinks.style.flexDirection = '';
+      navLinks.style.alignItems = '';
       navLinks.style.position = '';
       navLinks.style.top = '';
       navLinks.style.right = '';
@@ -64,4 +67,75 @@ window.addEventListener('resize', () => {
 
     dropdownMenus.forEach((menu) => menu.classList.remove('open'));
   }
+});
+
+/* =========================================
+   STACK 1 SLIDER
+   ========================================= */
+document.querySelectorAll('.work-slider').forEach((slider) => {
+  const slides = slider.querySelectorAll('.work-slide');
+  const dots = slider.querySelectorAll('.work-dot');
+  const prevBtn = slider.querySelector('.work-slider-btn.prev');
+  const nextBtn = slider.querySelector('.work-slider-btn.next');
+
+  if (!slides.length) return;
+
+  let current = 0;
+  let autoSlide;
+
+  const showSlide = (index) => {
+    slides.forEach((slide, i) => {
+      slide.classList.toggle('active', i === index);
+    });
+
+    dots.forEach((dot, i) => {
+      dot.classList.toggle('active', i === index);
+    });
+
+    current = index;
+  };
+
+  const goPrev = () => {
+    const nextIndex = (current - 1 + slides.length) % slides.length;
+    showSlide(nextIndex);
+  };
+
+  const goNext = () => {
+    const nextIndex = (current + 1) % slides.length;
+    showSlide(nextIndex);
+  };
+
+  const startAutoSlide = () => {
+    clearInterval(autoSlide);
+    autoSlide = setInterval(() => {
+      goNext();
+    }, 3500);
+  };
+
+  const stopAutoSlide = () => {
+    clearInterval(autoSlide);
+  };
+
+  prevBtn?.addEventListener('click', () => {
+    goPrev();
+    startAutoSlide();
+  });
+
+  nextBtn?.addEventListener('click', () => {
+    goNext();
+    startAutoSlide();
+  });
+
+  dots.forEach((dot, i) => {
+    dot.addEventListener('click', () => {
+      showSlide(i);
+      startAutoSlide();
+    });
+  });
+
+  slider.addEventListener('mouseenter', stopAutoSlide);
+  slider.addEventListener('mouseleave', startAutoSlide);
+
+  showSlide(0);
+  startAutoSlide();
 });

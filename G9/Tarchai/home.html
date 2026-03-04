@@ -45,7 +45,15 @@
     </nav>
   </header>
 
-  <section class="hero-banner-bg" id="home"></section>
+  <section class="hero-banner-bg" id="home">
+  <div class="hero-video-layer" aria-hidden="true">
+    <video class="hero-bg-video" autoplay muted loop playsinline>
+      <source src="hero-video.mp4" type="video/mp4">
+    </video>
+  </div>
+
+  <div class="hero-video-dim"></div>
+</section>
 
   <section class="hero-text-section">
     <div class="hero-container-sticky">
@@ -108,32 +116,54 @@
   <section class="stack" id="admission">
     <div class="top-rule"></div>
 
-    <article class="stack-card work" style="--i:1">
+<article class="stack-card work" style="--i:1">
   <div class="inner">
-    <div class="media" style="background-image:url('work1.jpg');"></div>
+    <div class="media media-slider">
+      <div class="work-slider" data-slider="learn">
+        <button class="work-slider-btn prev" type="button" aria-label="Previous image">‹</button>
+
+        <div class="work-slider-track">
+          <div class="work-slide active" style="background-image:url('p1.jpg');"></div>
+          <div class="work-slide" style="background-image:url('p2.jpg');"></div>
+          <div class="work-slide" style="background-image:url('p3.jpg');"></div>
+          <div class="work-slide" style="background-image:url('p4.jpg');"></div>
+        </div>
+
+        <button class="work-slider-btn next" type="button" aria-label="Next image">›</button>
+
+        <div class="work-slider-dots">
+          <button class="work-dot active" type="button" aria-label="Go to slide 1"></button>
+          <button class="work-dot" type="button" aria-label="Go to slide 2"></button>
+          <button class="work-dot" type="button" aria-label="Go to slide 3"></button>
+          <button class="work-dot" type="button" aria-label="Go to slide 4"></button>
+        </div>
+      </div>
+    </div>
+
     <div class="content">
-      <h3>Automatic Blending<br>Machine</h3>
+      <h3>Learning Through<br>Real Projects</h3>
 
       <div class="project-detail">
         <div class="project-block">
-          <h4>หลักการทำงาน</h4>
+          <h4>มาเรียนแล้วได้อะไร</h4>
           <p>
-            ใช้ปั๊มลมในการดันน้ำขึ้นมาผสม ควบคุมการทำงานด้วยโปรแกรมบน Arduino
-            เพื่อกำหนดสัดส่วนและระยะเวลาในการปล่อยของเหลวให้เป็นไปตามที่ออกแบบไว้
+            นักศึกษาจะได้เรียนรู้จากการลงมือทำจริง ทั้งงานด้านระบบราง
+            ระบบอัตโนมัติ หุ่นยนต์ และระบบ IoT ที่เชื่อมโยงทั้ง Hardware,
+            Software และการแก้ปัญหาในสถานการณ์จริง
           </p>
         </div>
 
         <div class="project-block">
-          <h4>วิธีการใช้งาน</h4>
+          <h4>บรรยากาศการเรียนรู้</h4>
           <p>
-            เมื่อกดปุ่ม ปั๊มจะเริ่มทำงานและปล่อยของเหลวจากแต่ละช่องตามลำดับ
-            ในปริมาณที่กำหนด สามารถประยุกต์ใช้กับการชงเครื่องดื่ม
-            หรือระบบรดน้ำต้นไม้แบบอัตโนมัติได้
+            เน้นการทำโปรเจกต์ ทดลอง พัฒนา และนำเสนอผลงานร่วมกัน
+            เพื่อสร้างทักษะการคิดวิเคราะห์ การออกแบบระบบ
+            และประสบการณ์ที่พร้อมต่อยอดสู่การทำงานจริงในอนาคต
           </p>
         </div>
       </div>
 
-      <div class="meta">IoT Project • 2025</div>
+      <div class="meta">Student Projects • Hands-on Experience</div>
     </div>
   </div>
 </article>
@@ -168,33 +198,53 @@
   </div>
 </article>
 
-<article class="stack-card work" style="--i:3">
+<article class="stack-card work stack-showcase" style="--i:3">
   <div class="inner">
-    <div class="media" style="background-image:url('work3.jpg');"></div>
-    <div class="content">
-      <h3>Safety cap</h3>
+    <div class="media media-showcase">
+      <div class="showcase-grid">
+        <div class="showcase-item" style="background-image:url('work1.jpg');">
+          <span>Automatic Blending</span>
+        </div>
+        <div class="showcase-item" style="background-image:url('work2.jpg');">
+          <span>Measurement Multimeter</span>
+        </div>
+        <div class="showcase-item" style="background-image:url('work3.jpg');">
+          <span>Safety Cap</span>
+        </div>
+        <div class="showcase-item" style="background-image:url('work4.jpg');">
+          <span>Smart Bin</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="content content-showcase">
+      <h3>MORE FROM THE IOT COMMUNITY</h3>
+
+      <p class="showcase-lead">
+        โครงงานตัวอย่างจากนักศึกษา ภาควิชาวิศวกรรมไอโอทีและสารสนเทศ
+      </p>
 
       <div class="project-detail">
         <div class="project-block">
-          <h4>หลักการทำงาน</h4>
+          <h4>แนวคิด</h4>
           <p>
-            ภายในหมวกติดตั้งเซนเซอร์วัดความเอียงแบบ 3 แกน เพื่อตรวจจับการเคลื่อนไหว
-            และส่งค่ามุมไปประมวลผลผ่าน Arduino ก่อนควบคุมไฟ LED
-            ให้แสดงผลตามองศาที่กำหนด
+            รวมตัวอย่างผลงานจากนักศึกษาที่สะท้อนการประยุกต์ใช้ IoT,
+            ระบบอัตโนมัติ, เซนเซอร์ และงานด้านความปลอดภัย
+            เพื่อแสดงให้เห็นแนวทางการเรียนรู้แบบลงมือทำจริง
           </p>
         </div>
 
         <div class="project-block">
-          <h4>วิธีการใช้งาน</h4>
+          <h4>ตัวอย่างโครงงาน</h4>
           <p>
-            เมื่อผู้ใช้งานสวมหมวกและมีการเอียงศีรษะ เซนเซอร์จะตรวจจับค่า X, Y, Z
-            แล้วสั่งให้ระบบแสดงผลผ่านไฟ LED เพื่อช่วยแจ้งเตือนหรือเพิ่มความปลอดภัย
-            ระหว่างการใช้งานจริง
+            ภายในประกอบด้วยงานต้นแบบ 4 รูปแบบ ได้แก่
+            เครื่องผสมอัตโนมัติ, เครื่องวัดหลายค่า, หมวกเพื่อความปลอดภัย
+            และระบบตรวจวัดปริมาณขยะอัจฉริยะ
           </p>
         </div>
       </div>
 
-      <div class="meta">Wearable • Safety</div>
+      <div class="meta">Student Projects • Showcase</div>
     </div>
   </div>
 </article>

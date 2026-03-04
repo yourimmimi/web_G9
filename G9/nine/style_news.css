@@ -433,15 +433,12 @@ a { text-decoration: none; color: inherit; }
     background-color: #6c757d;
 }
 
-/* ข่าวประกาศ สีเทา */
-
 /* --- Footer Section --- */
 .footer {
     display: flex;
     justify-content: space-between;
     background-color: #fafafa;
     padding: 60px 40px;
-    /* เพิ่มพื้นที่ว่างให้ดูโปร่งขึ้น */
     border-top: 2px solid #eee;
     margin-top: 20px;
 }
@@ -454,7 +451,6 @@ a { text-decoration: none; color: inherit; }
     color: #d94a26;
     margin: 0 0 15px 0;
     font-size: 18px;
-    /* ใหญ่ขึ้นจาก 14px */
     font-weight: bold;
 }
 
@@ -468,9 +464,7 @@ a { text-decoration: none; color: inherit; }
 .social-icons {
     display: flex;
     gap: 15px;
-    /* ถ่างระยะห่างไอคอน */
     font-size: 36px;
-    /* ใหญ่ขึ้นจาก 28px */
     color: #444;
 }
 
@@ -487,8 +481,7 @@ a { text-decoration: none; color: inherit; }
 }
 
 .phone-numbers {
-    font-size: 16px;
-    /* ใหญ่ขึ้นจาก 10px (สำคัญมาก) */
+    font-size: 10px;
     line-height: 1.6;
     font-weight: bold;
 }
@@ -505,15 +498,13 @@ a { text-decoration: none; color: inherit; }
 
 .footer-right h3 {
     margin: 0 0 15px 0;
-    font-size: 22px;
-    /* ใหญ่ขึ้นจาก 16px */
+    font-size: 16px;
     color: #000;
 }
 
 .footer-right p {
     margin: 0;
-    font-size: 16px;
-    /* ใหญ่ขึ้นจาก 12px */
+    font-size: 12px;
     line-height: 1.8;
     color: #333;
 }
@@ -892,17 +883,6 @@ a { text-decoration: none; color: inherit; }
         font-size: 40px;
     }
 
-    /* Footer เริ่มหดเป็นแนวตั้งซ้อนกัน */
-    .footer {
-        flex-direction: column;
-        gap: 40px;
-        padding: 40px 30px;
-    }
-
-    .footer-right {
-        padding-left: 0;
-    }
-
     /* ปรับ Slider ให้แสดง 2 การ์ดบน iPad */
     .slider-track .card {
         flex: 0 0 calc(50% - 10px);
@@ -990,10 +970,14 @@ a { text-decoration: none; color: inherit; }
         margin: 0 !important;
     }
 
-    /* จัด Footer ให้อยู่กึ่งกลางเพื่อความสวยงามบนจอแนวตั้ง */
     .footer {
-        text-align: center;
-        padding: 40px 20px;
+        flex-direction: column;
+        padding: 30px 20px;
+        gap: 30px;
+    }
+
+    .footer-right {
+        padding-left: 0;
     }
 
     .contact-info,
@@ -1133,21 +1117,6 @@ a { text-decoration: none; color: inherit; }
         font-size: 16px;
     }
 
-    /* บีบขนาด Footer สำหรับจอมือถือเล็กๆ โดยยังคงอ่านง่าย */
-    .footer {
-        padding: 30px 15px;
-        gap: 30px;
-    }
-
-    .footer-heading {
-        font-size: 15px;
-    }
-
-    .footer-right h3 {
-        font-size: 18px;
-    }
-
-    .footer-right p,
     .phone-numbers {
         font-size: 13px;
     }

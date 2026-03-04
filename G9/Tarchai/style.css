@@ -291,6 +291,9 @@ header {
   position: relative;
   width: 100%;
   height: var(--heroH);
+  overflow: hidden;
+
+  /* รูปสำรอง ถ้าวิดีโอมีปัญหา */
   background-image:
     linear-gradient(90deg, #000000 0%, #000000 35%, rgba(0,0,0,0) 65%),
     url('banner.jpg');
@@ -301,16 +304,80 @@ header {
   background-position:
     0 0,
     var(--heroImgPos);
+
   z-index: 0;
 }
 
+/* ชั้นวิดีโอ */
+.hero-video-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  overflow: hidden;
+  pointer-events: none; /* ไม่ให้วิดีโอบังการคลิก */
+}
+
+/* วิดีโอทับเต็ม 100% */
+.hero-bg-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border: 0;
+  display: block;
+  opacity: 1; /* ไม่โปร่ง */
+}
+
+/* overlay ดำเพื่อให้อ่านตัวอักษรง่าย */
+.hero-video-dim {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(0,0,0,0.92) 0%,
+      rgba(0,0,0,0.88) 28%,
+      rgba(0,0,0,0.30) 58%,
+      rgba(0,0,0,0.05) 100%
+    );
+}
+
+/* ปุ่มเล่น/หยุด */
+.hero-video-toggle {
+  position: absolute;
+  right: 28px;
+  bottom: 24px;
+  z-index: 4;
+
+  appearance: none;
+  border: 1px solid rgba(255,255,255,0.7);
+  background: rgba(0,0,0,0.45);
+  color: #fff;
+  padding: 10px 16px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  backdrop-filter: blur(4px);
+  transition: 0.2s ease;
+}
+
+.hero-video-toggle:hover {
+  background: rgba(0,0,0,0.7);
+  transform: translateY(-1px);
+}
+
+/* ให้ข้อความลอยอยู่บนวิดีโอ */
 .hero-text-section {
   position: relative;
   width: 100%;
-  height: calc(var(--heroH) + var(--preNews)); /* ชั้น 3: ระยะวิ่ง */
+  height: calc(var(--heroH) + var(--preNews));
   margin-top: calc(-1 * var(--heroH));
   pointer-events: none;
-  z-index: 2;
+  z-index: 3;
 }
 
 .hero-container-sticky {
@@ -350,6 +417,102 @@ header {
   font-size: calc(1em * var(--kmitlScale));
   letter-spacing: -0.8px;
   margin-bottom: 10px;
+}
+
+/* =========================================
+   STACK 3 : PROJECT GALLERY
+   ========================================= */
+.stack-card.project-gallery-card {
+  position: relative;
+  top: auto;
+  z-index: 13;
+  margin-bottom: 0;
+  transform: none;
+  background: #f4f4f1;
+}
+
+.stack-card.project-gallery-card .project-gallery-inner {
+  width: var(--cardW);
+  max-width: 100%;
+  margin: 0 auto;
+  padding: clamp(40px, 3vw, 56px) clamp(24px, 2vw, 32px) clamp(42px, 3vw, 58px);
+  background: #f4f4f1;
+}
+
+.stack-card.project-gallery-card .project-gallery-head {
+  text-align: left;
+  margin-bottom: 28px;
+  padding-left: clamp(48px, 6vw, 110px);
+}
+
+.stack-card.project-gallery-card .project-gallery-head h2 {
+  font-size: clamp(38px, 3.1vw, 72px);
+  line-height: 0.98;
+  font-weight: 800;
+  color: #1e2b36;
+  margin-bottom: 12px;
+  letter-spacing: -0.8px;
+  text-transform: uppercase;
+  max-width: 900px;
+}
+
+.stack-card.project-gallery-card .project-gallery-head p {
+  font-size: clamp(16px, 1.05vw, 21px);
+  line-height: 1.6;
+  font-weight: 300;
+  color: #2f3740;
+  max-width: 760px;
+}
+
+.stack-card.project-gallery-card .project-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.stack-card.project-gallery-card .project-box {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 260px;
+  background: #10242c;
+  overflow: hidden;
+  box-shadow: 0 10px 24px rgba(0,0,0,0.08);
+}
+
+.stack-card.project-gallery-card .project-thumb {
+  min-height: 260px;
+  background-size: cover;
+  background-position: center;
+}
+
+.stack-card.project-gallery-card .project-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 24px 24px 22px;
+  color: #fff;
+}
+
+.stack-card.project-gallery-card .project-info h3 {
+  font-size: clamp(22px, 1.55vw, 34px);
+  line-height: 1.08;
+  font-weight: 800;
+  margin-bottom: 10px;
+  color: #fff;
+}
+
+.stack-card.project-gallery-card .project-info p {
+  font-size: clamp(13px, 0.82vw, 15px);
+  line-height: 1.6;
+  font-weight: 300;
+  color: rgba(255,255,255,0.92);
+  margin-bottom: 12px;
+}
+
+.stack-card.project-gallery-card .project-meta {
+  font-size: 14px;
+  font-weight: 600;
+  color: #f6a04d;
 }
 
 /* =========================================
@@ -647,6 +810,88 @@ header {
   letter-spacing: 0.2px;
 }
 
+/* =========================================
+   STACK 3 SHOWCASE
+   คง layout เดิม แต่เปลี่ยนฝั่งซ้ายเป็น 4 โปรเจกต์ย่อย
+   ========================================= */
+.stack-showcase .media-showcase {
+  padding: 18px;
+  background: #e9e9e4;
+}
+
+.stack-showcase .showcase-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 14px;
+  width: 100%;
+  height: 100%;
+  min-height: calc(100vh - var(--pinTop) - 36px);
+}
+
+.stack-showcase .showcase-item {
+  position: relative;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  border-radius: 6px;
+  min-height: 220px;
+  box-shadow: 0 8px 18px rgba(0,0,0,0.10);
+}
+
+.stack-showcase .showcase-item::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.72), rgba(0,0,0,0.10));
+}
+
+.stack-showcase .showcase-item span {
+  position: absolute;
+  left: 14px;
+  right: 14px;
+  bottom: 12px;
+  z-index: 1;
+  color: #fff;
+  font-size: clamp(13px, 0.9vw, 17px);
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.content-showcase h3 {
+  max-width: 760px;
+}
+
+.content-showcase .showcase-lead {
+  font-size: clamp(17px, 1.1vw, 22px);
+  font-weight: 400;
+  line-height: 1.6;
+  color: #2f3740;
+  margin-bottom: 22px;
+  max-width: 760px;
+}
+
+.project-detail {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.project-block h4 {
+  font-size: clamp(22px, 1.3vw, 28px);
+  font-weight: 800;
+  line-height: 1.2;
+  color: #111;
+  margin-bottom: 8px;
+}
+
+.project-block p {
+  font-size: clamp(15px, 0.98vw, 19px);
+  line-height: 1.7;
+  color: #2f3740;
+  max-width: 760px;
+}
+
 /* ค่าเทอม: ต่อท้ายใบสุดท้าย */
 .stack-card.tuition {
   position: relative;
@@ -888,20 +1133,36 @@ header {
     --newsLift: 0px;
   }
 
-.hero-banner-bg {
-  height: var(--heroH);
-  background-image:
-    linear-gradient(
-      90deg,
-      #000 0%,
-      #000 42%,
-      rgba(0,0,0,0.45) 100%,
-      rgba(0,0,0,0) 80%
-    ),
-    url('banner.jpg');
-  background-size: cover, cover;
-  background-position: 0 0, 80% center;
-}
+  .hero-banner-bg {
+    height: var(--heroH);
+    background-image:
+      linear-gradient(
+        90deg,
+        #000 0%,
+        #000 42%,
+        rgba(0,0,0,0.45) 100%,
+        rgba(0,0,0,0) 80%
+      ),
+      url('banner.jpg');
+    background-size: cover, cover;
+    background-position: 0 0, 80% center;
+  }
+
+  .hero-bg-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .hero-video-dim {
+    background:
+      linear-gradient(
+        90deg,
+        rgba(0,0,0,0.9) 0%,
+        rgba(0,0,0,0.78) 42%,
+        rgba(0,0,0,0.25) 100%
+      );
+  }
 
   .hero-text-section {
     height: var(--heroH);
@@ -1117,8 +1378,103 @@ header {
     font-size: 12px;
     padding-left: 14px;
   }
+    /* =========================================
+     MOBILE STACK 3 : PROJECT GALLERY
+     ========================================= */
+  .stack-card.project-gallery-card {
+    margin: 0 0 14px;
+    background: transparent;
+  }
 
-  
+  .stack-card.project-gallery-card .project-gallery-inner {
+    width: calc(100% - 24px);
+    margin: 0 auto;
+    padding: 22px 14px 18px;
+    background: #f4f4f1;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  }
+
+  .stack-card.project-gallery-card .project-gallery-head {
+    text-align: left;
+    margin-bottom: 18px;
+    padding-left: 0;
+  }
+
+  .stack-card.project-gallery-card .project-gallery-head h2 {
+    font-size: clamp(24px, 8vw, 34px);
+    line-height: 1.05;
+    margin-bottom: 8px;
+  }
+
+  .stack-card.project-gallery-card .project-gallery-head p {
+    font-size: 13px;
+    line-height: 1.6;
+  }
+
+  .stack-card.project-gallery-card .project-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .stack-card.project-gallery-card .project-box {
+    grid-template-columns: 1fr;
+    min-height: auto;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .stack-card.project-gallery-card .project-thumb {
+    min-height: 190px;
+  }
+
+  .stack-card.project-gallery-card .project-info {
+    padding: 18px 16px 16px;
+  }
+
+  .stack-card.project-gallery-card .project-info h3 {
+    font-size: 24px;
+    margin-bottom: 8px;
+  }
+
+  .stack-card.project-gallery-card .project-info p {
+    font-size: 13px;
+    line-height: 1.6;
+    margin-bottom: 10px;
+  }
+
+  .stack-card.project-gallery-card .project-meta {
+    font-size: 12px;
+  }
+
+  .work-slider-btn {
+    width: 38px;
+    height: 38px;
+    font-size: 24px;
+  }
+
+  .work-slider-btn.prev {
+    left: 10px;
+  }
+
+  .work-slider-btn.next {
+    right: 10px;
+  }
+
+  .work-slider-dots {
+    bottom: 12px;
+  }
+
+  .project-detail {
+    gap: 14px;
+  }
+
+  .project-block h4 {
+    font-size: 18px;
+    margin-bottom: 4px;
+    padding-left: 14px;
+  }
 }
 
 
@@ -1391,4 +1747,98 @@ header {
   .tuition-inner {
     width: min(1520px, 90vw);
   }
+}
+
+/* =========================================
+   STACK 1 IMAGE SLIDER
+   ========================================= */
+.media-slider {
+  position: relative;
+  overflow: hidden;
+  background: #ddd;
+}
+
+.work-slider {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: inherit;
+}
+
+.work-slider-track {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.work-slide {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+}
+
+.work-slide.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.work-slider-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 3;
+  width: 46px;
+  height: 46px;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(0,0,0,0.38);
+  color: #fff;
+  font-size: 30px;
+  line-height: 1;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  transition: 0.2s ease;
+  backdrop-filter: blur(3px);
+}
+
+.work-slider-btn:hover {
+  background: rgba(0,0,0,0.58);
+}
+
+.work-slider-btn.prev {
+  left: 18px;
+}
+
+.work-slider-btn.next {
+  right: 18px;
+}
+
+.work-slider-dots {
+  position: absolute;
+  left: 50%;
+  bottom: 18px;
+  transform: translateX(-50%);
+  z-index: 3;
+  display: flex;
+  gap: 8px;
+}
+
+.work-dot {
+  width: 10px;
+  height: 10px;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.45);
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.work-dot.active {
+  background: #fff;
+  transform: scale(1.15);
 }

@@ -305,7 +305,7 @@ main .container {
     display: flex;
     justify-content: space-between;
     background-color: #fafafa;
-    padding: 40px;
+    padding: 60px 40px;
     border-top: 2px solid #eee;
     margin-top: 20px;
 }
@@ -317,26 +317,30 @@ main .container {
 .footer-heading {
     color: #d94a26;
     margin: 0 0 15px 0;
-    font-size: 14px;
+    font-size: 18px;
+    font-weight: bold;
 }
 
 .contact-info {
     display: flex;
     align-items: center;
-    gap: 15px;
-    margin-bottom: 15px;
+    gap: 20px;
+    margin-bottom: 20px;
 }
 
 .social-icons {
     display: flex;
-    gap: 8px;
-    font-size: 28px;
+    gap: 15px;
+    font-size: 36px;
     color: #444;
 }
 
-.social-icons i {
+.social-icons i,
+.social-icons a {
     cursor: pointer;
     transition: 0.3s;
+    color: inherit;
+    text-decoration: none;
 }
 
 .social-icons i:hover {

@@ -1,0 +1,52 @@
+@media (min-width: 1920px) {
+  :root {
+    --contentMax: 1520px;
+    --cardW: min(1880px, 98vw);
+
+    --heroPadR: 42%;
+    --heroVW: 3.9vw;
+    --heroMax: 104px;
+
+    --heroH: 841px;
+    --preNews: 630px;
+    --heroTextTop: 250px;
+    --newsLift: -220px;
+
+    --hold: 64vh;
+  }
+
+  .hero-container-sticky {
+    width: 90%;
+    max-width: 1680px;
+  }
+
+  .community-text h2 {
+    font-size: 56px;
+  }
+
+  .community-text p {
+    font-size: 17px;
+    line-height: 1.9;
+  }
+
+  .large-card {
+    min-height: 560px;
+  }
+
+  .news-overlay {
+    padding: 44px;
+    padding-top: 96px;
+  }
+
+  .news-overlay h3 {
+    font-size: 28px;
+  }
+
+  .content h3 {
+    font-size: clamp(58px, 3vw, 92px);
+  }
+
+  .tuition-inner {
+    width: min(1520px, 90vw);
+  }
+}

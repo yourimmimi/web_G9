@@ -1,0 +1,1168 @@
+/* =========================================
+   0. VARIABLES
+   ========================================= */
+:root{
+  --headerH: 110px;
+  --preNews: 500px;
+  --heroH: max(500px, calc(100vh - var(--headerH)));
+  --heroTextTop: 140px;
+
+  --designW: 1905px;
+  --heroImgPos: 50% 0%;
+  --bldImgPos: 50% 0%;
+
+  --bldH: 964px;
+  --gradH: 900px;
+  --gradTop: 100px;
+
+  --bldTint: 0;
+  --gradBottom: 1;
+  --gradMid: 0.9;
+  --gradFadeTo: 100%;
+
+  --contentMax: 1240px;
+  --heroPadR: 46%;
+
+  --heroMin: 40px;
+  --heroVW: 4.6vw;
+  --heroMax: 82px;
+
+  --kmitlScale: 0.92;
+  --heroLineH: 0.96;
+
+  --newsLift: -120px;
+
+  --pageBg: #fbfaf6;
+  --ink: #111;
+  --muted: #6b6b6b;
+  --burnt: #B86A2E;
+  --orange: #F26522;
+
+  --pinTop: var(--headerH);
+  --hold: 58vh;
+  --cardW: min(1720px, 100vw);
+  --gap: 0px;
+}
+
+/* =========================================
+   1. GLOBAL RESET & UTILITIES
+   ========================================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Kanit', sans-serif;
+}
+
+body {
+  background-color: #000;
+  overflow-x: hidden;
+  padding-top: 0;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.text-orange { color: #F26522; }
+
+/* =========================================
+   2. HEADER
+   ========================================= */
+header {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  z-index: 100;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 40px;
+  background: #fff;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  border-top: 20px solid #F37021;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+/* ใช้ฟอนต์เหมือนเพื่อนเฉพาะ header */
+.navbar,
+.navbar * {
+  font-family: 'Prompt', sans-serif;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.navbar .logo img {
+  width: 200px;
+  height: auto;
+  display: block;
+  object-fit: contain;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 50px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links li {
+  position: relative;
+}
+
+.nav-links li:hover {
+  color: #F37021;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.hamburger {
+  display: none;
+  cursor: pointer;
+  font-size: 1.5rem;
+  color: #333;
+  line-height: 1;
+  user-select: none;
+}
+
+/* Dropdown */
+.dropdown-menu {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.arrow {
+  font-size: 0.7em;
+  margin-left: 5px;
+  vertical-align: middle;
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+.dropdown-menu:hover .arrow {
+  transform: rotate(180deg);
+}
+
+.dropdown-content {
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  background-color: #F37021;
+  min-width: 250px;
+  max-width: 350px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+  z-index: 1000;
+  top: 100%;
+  left: 0;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  border-radius: 5px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.dropdown-content li {
+  border-bottom: 1px solid rgba(255,255,255,0.3);
+}
+
+.dropdown-content li:last-child {
+  border-bottom: none;
+}
+
+.dropdown-content li a {
+  color: #fff !important;
+  padding: 15px 20px;
+  text-decoration: none;
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 500;
+  line-height: 1.4;
+  transition: background-color 0.3s, padding-left 0.3s;
+}
+
+.dropdown-content li a:hover {
+  background-color: #d95e16;
+  padding-left: 25px;
+}
+
+.dropdown-menu:hover .dropdown-content {
+  visibility: visible;
+  opacity: 1;
+  top: 100%;
+}
+
+.dropdown-menu.align-right .dropdown-content {
+  left: auto;
+  right: 0;
+}
+
+/* Mobile */
+
+
+/* =========================================
+   3. HERO (BG + Sticky Text)
+   ========================================= */
+.hero-banner-bg {
+  position: relative;
+  width: 100%;
+  height: var(--heroH);
+  overflow: hidden;
+
+  /* รูปสำรอง ถ้าวิดีโอมีปัญหา */
+  background-image:
+    linear-gradient(90deg, #000000 0%, #000000 35%, rgba(0,0,0,0) 65%),
+    url('banner.jpg');
+  background-repeat: no-repeat, no-repeat;
+  background-size:
+    100% 100%,
+    min(100%, var(--designW)) auto;
+  background-position:
+    0 0,
+    var(--heroImgPos);
+
+  z-index: 0;
+}
+
+/* ชั้นวิดีโอ */
+.hero-video-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  overflow: hidden;
+  pointer-events: none; /* ไม่ให้วิดีโอบังการคลิก */
+}
+
+/* วิดีโอทับเต็ม 100% */
+.hero-bg-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border: 0;
+  display: block;
+  opacity: 1; /* ไม่โปร่ง */
+}
+
+/* overlay ดำเพื่อให้อ่านตัวอักษรง่าย */
+.hero-video-dim {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(0,0,0,0.92) 0%,
+      rgba(0,0,0,0.88) 28%,
+      rgba(0,0,0,0.30) 58%,
+      rgba(0,0,0,0.05) 100%
+    );
+}
+
+/* ปุ่มเล่น/หยุด */
+.hero-video-toggle {
+  position: absolute;
+  right: 28px;
+  bottom: 24px;
+  z-index: 4;
+
+  appearance: none;
+  border: 1px solid rgba(255,255,255,0.7);
+  background: rgba(0,0,0,0.45);
+  color: #fff;
+  padding: 10px 16px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  backdrop-filter: blur(4px);
+  transition: 0.2s ease;
+}
+
+.hero-video-toggle:hover {
+  background: rgba(0,0,0,0.7);
+  transform: translateY(-1px);
+}
+
+/* ให้ข้อความลอยอยู่บนวิดีโอ */
+.hero-text-section {
+  position: relative;
+  width: 100%;
+  height: calc(var(--heroH) + var(--preNews));
+  margin-top: calc(-1 * var(--heroH));
+  pointer-events: none;
+  z-index: 3;
+}
+
+.hero-container-sticky {
+  position: sticky;
+  top: var(--headerH);
+  height: var(--heroH);                  /* ชั้น 2: sticky frame */
+  width: 92%;
+  max-width: 1440px;
+  margin: 0 auto;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.hero-text-content {
+  position: absolute;                    /* ชั้น 1: text ล้วน */
+  top: var(--heroTextTop);
+  left: 0;
+  right: var(--heroPadR);
+  z-index: 2;
+  transform: none;
+  will-change: auto;
+  pointer-events: auto;
+}
+
+.hero-text-content h1 {
+  color: white;
+  font-size: clamp(var(--heroMin), var(--heroVW), var(--heroMax));
+  font-weight: 800;
+  line-height: var(--heroLineH);
+  text-transform: uppercase;
+  letter-spacing: -0.5px;
+  text-shadow: 0 10px 40px rgba(0,0,0,0.8);
+}
+
+.hero-text-content h1 .text-orange {
+  display: inline-block;
+  font-size: calc(1em * var(--kmitlScale));
+  letter-spacing: -0.8px;
+  margin-bottom: 10px;
+}
+
+/* =========================================
+   STACK 3 : PROJECT GALLERY
+   ========================================= */
+.stack-card.project-gallery-card {
+  position: relative;
+  top: auto;
+  z-index: 13;
+  margin-bottom: 0;
+  transform: none;
+  background: #f4f4f1;
+}
+
+.stack-card.project-gallery-card .project-gallery-inner {
+  width: var(--cardW);
+  max-width: 100%;
+  margin: 0 auto;
+  padding: clamp(40px, 3vw, 56px) clamp(24px, 2vw, 32px) clamp(42px, 3vw, 58px);
+  background: #f4f4f1;
+}
+
+.stack-card.project-gallery-card .project-gallery-head {
+  text-align: left;
+  margin-bottom: 28px;
+  padding-left: clamp(48px, 6vw, 110px);
+}
+
+.stack-card.project-gallery-card .project-gallery-head h2 {
+  font-size: clamp(38px, 3.1vw, 72px);
+  line-height: 0.98;
+  font-weight: 800;
+  color: #1e2b36;
+  margin-bottom: 12px;
+  letter-spacing: -0.8px;
+  text-transform: uppercase;
+  max-width: 900px;
+}
+
+.stack-card.project-gallery-card .project-gallery-head p {
+  font-size: clamp(16px, 1.05vw, 21px);
+  line-height: 1.6;
+  font-weight: 300;
+  color: #2f3740;
+  max-width: 760px;
+}
+
+.stack-card.project-gallery-card .project-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.stack-card.project-gallery-card .project-box {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 260px;
+  background: #10242c;
+  overflow: hidden;
+  box-shadow: 0 10px 24px rgba(0,0,0,0.08);
+}
+
+.stack-card.project-gallery-card .project-thumb {
+  min-height: 260px;
+  background-size: cover;
+  background-position: center;
+}
+
+.stack-card.project-gallery-card .project-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 24px 24px 22px;
+  color: #fff;
+}
+
+.stack-card.project-gallery-card .project-info h3 {
+  font-size: clamp(22px, 1.55vw, 34px);
+  line-height: 1.08;
+  font-weight: 800;
+  margin-bottom: 10px;
+  color: #fff;
+}
+
+.stack-card.project-gallery-card .project-info p {
+  font-size: clamp(13px, 0.82vw, 15px);
+  line-height: 1.6;
+  font-weight: 300;
+  color: rgba(255,255,255,0.92);
+  margin-bottom: 12px;
+}
+
+.stack-card.project-gallery-card .project-meta {
+  font-size: 14px;
+  font-weight: 600;
+  color: #f6a04d;
+}
+
+/* =========================================
+   4. COMMUNITY & NEWS
+   ========================================= */
+.community-section {
+  width: 100%;
+  position: relative;
+  z-index: 1;
+  background-color: #F26522;
+  overflow: hidden;
+  margin-top: calc(-1 * var(--preNews));
+  padding-top: var(--preNews);
+  padding-bottom: 80px;
+  min-height: 100vh;
+  color: white;
+}
+
+.community-section::before {
+  content:"";
+  position:absolute;
+  left:0;
+  top:0;
+  width:100%;
+  height: var(--bldH);
+  background-image:
+    linear-gradient(rgba(242,101,34,var(--bldTint)), rgba(242,101,34,var(--bldTint))),
+    url('building.jpg');
+  background-repeat: no-repeat, no-repeat;
+  background-size:
+    100% 100%,
+    min(100%, var(--designW)) auto;
+  background-position:
+    0 0,
+    var(--bldImgPos);
+  z-index: 0;
+}
+
+.community-section::after {
+  content:"";
+  position:absolute;
+  left:0;
+  top: var(--gradTop);
+  width:100%;
+  height: var(--gradH);
+  background: linear-gradient(to top,
+    rgba(242,101,34,var(--gradBottom)) 0%,
+    rgba(242,101,34,var(--gradMid)) 35%,
+    rgba(242,101,34,0.35) 60%,
+    rgba(242,101,34,0) var(--gradFadeTo),
+    rgba(242,101,34,0) 100%
+  );
+  z-index: 1;
+  pointer-events: none;
+  filter: saturate(1.02) blur(0.2px);
+  transform: translateZ(0);
+}
+
+.community-container {
+  position: relative;
+  z-index: 2;
+  width: 92%;
+  max-width: var(--contentMax);
+  margin: 0 auto;
+}
+
+.news-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 24px;
+  margin-bottom: 0;
+  margin-top: var(--newsLift);
+}
+
+.news-col-left {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.news-card {
+  overflow: hidden;
+  display: flex;
+  border-radius: 4px;
+  box-shadow: 0 12px 32px rgba(0,0,0,0.18);
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+.news-card:hover { transform: translateY(-4px); }
+
+.small-card {
+  height: 100%;
+  min-height: 180px;
+}
+
+.small-card .news-img {
+  flex: 1;
+  min-width: 38%;
+  background-size: cover;
+  background-position: center;
+}
+
+.small-card .news-content {
+  flex: 1.6;
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.bg-blue {
+  background-color: #0071BC;
+  color: white;
+}
+
+.bg-white {
+  background-color: #fff;
+  color: #333;
+}
+
+.text-dark { color: #333 !important; }
+
+.news-content h3 {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  line-height: 1.35;
+}
+
+.news-content p {
+  font-size: 13px;
+  font-weight: 300;
+  opacity: 0.92;
+}
+
+.large-card {
+  position: relative;
+  height: 100%;
+  min-height: 420px;
+  background-color: #000;
+}
+
+.news-img-large {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  opacity: 0.85;
+  transition: 0.3s;
+}
+
+.large-card:hover .news-img-large { opacity: 1; }
+
+.news-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: linear-gradient(to top, rgba(0,0,0,0.95), transparent);
+  padding: 34px;
+  padding-top: 72px;
+}
+
+.news-overlay h3 {
+  font-size: 22px;
+  font-weight: 600;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+}
+
+.community-text {
+  text-align: center;
+  margin-top: 140px;
+}
+
+.community-text h2 {
+  font-size: 40px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 22px;
+  line-height: 1.05;
+}
+
+.community-text p {
+  font-size: 15px;
+  font-weight: 300;
+  line-height: 1.8;
+  opacity: 0.9;
+}
+
+/* =========================================
+   5. CONTINUED SECTION AFTER COMMUNITY
+   ========================================= */
+.stack {
+  background: #f4f4f1;
+  padding: 0 0 20px;
+}
+
+.top-rule {
+  width: 100%;
+  margin: 0;
+  height: 6px;
+  background: var(--orange);
+  opacity: 1;
+}
+
+.stack-card{
+  position: sticky;
+  top: var(--pinTop);
+  z-index: calc(10 + var(--i));
+  width: 100%;
+  margin: 0 auto var(--hold);
+  background: #f4f4f1;
+  transform: translateZ(0);
+}
+
+.stack-card:last-child {
+  margin-bottom: 0;
+}
+
+/* work ใบสุดท้าย: ไม่ sticky */
+.stack > .stack-card.work:nth-last-child(2){
+  position: relative;
+  top: auto;
+  z-index: 13;
+  margin-bottom: 0;
+  transform: none;
+}
+
+.stack-card.work .inner{
+  width: var(--cardW);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 48% 52%;
+  gap: 0;
+  align-items: stretch;
+  min-height: calc(100vh - var(--pinTop));
+  background: #f4f4f1;
+}
+
+.media {
+  width: 100%;
+  height: 100%;
+  min-height: calc(100vh - var(--pinTop));
+  background: #ddd center/cover no-repeat;
+  border-radius: 0;
+  overflow: hidden;
+  aspect-ratio: auto;
+}
+
+.content {
+  position: relative;
+  background: #f4f4f1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(48px, 6vw, 110px);
+}
+
+.content::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 14px;
+  height: 170px;
+  background: var(--orange);
+}
+
+.content h3 {
+  font-size: clamp(42px, 3.4vw, 72px);
+  font-weight: 800;
+  margin-bottom: 18px;
+  line-height: 0.98;
+  color: #1e2b36;
+  letter-spacing: -0.8px;
+  max-width: 620px;
+}
+
+.content p {
+  font-size: clamp(16px, 1.05vw, 21px);
+  font-weight: 300;
+  line-height: 1.55;
+  color: #2f3740;
+  max-width: 720px;
+}
+
+.content .meta {
+  margin-top: 26px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #a95512;
+  letter-spacing: 0.2px;
+}
+
+/* =========================================
+   STACK 3 SHOWCASE
+   คง layout เดิม แต่เปลี่ยนฝั่งซ้ายเป็น 4 โปรเจกต์ย่อย
+   ========================================= */
+.stack-showcase .media-showcase {
+  padding: 18px;
+  background: #e9e9e4;
+}
+
+.stack-showcase .showcase-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 14px;
+  width: 100%;
+  height: 100%;
+  min-height: calc(100vh - var(--pinTop) - 36px);
+}
+
+.stack-showcase .showcase-item {
+  position: relative;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  border-radius: 6px;
+  min-height: 220px;
+  box-shadow: 0 8px 18px rgba(0,0,0,0.10);
+}
+
+.stack-showcase .showcase-item::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.72), rgba(0,0,0,0.10));
+}
+
+.stack-showcase .showcase-item span {
+  position: absolute;
+  left: 14px;
+  right: 14px;
+  bottom: 12px;
+  z-index: 1;
+  color: #fff;
+  font-size: clamp(13px, 0.9vw, 17px);
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.content-showcase h3 {
+  max-width: 760px;
+}
+
+.content-showcase .showcase-lead {
+  font-size: clamp(17px, 1.1vw, 22px);
+  font-weight: 400;
+  line-height: 1.6;
+  color: #2f3740;
+  margin-bottom: 22px;
+  max-width: 760px;
+}
+
+.project-detail {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.project-block h4 {
+  font-size: clamp(22px, 1.3vw, 28px);
+  font-weight: 800;
+  line-height: 1.2;
+  color: #111;
+  margin-bottom: 8px;
+}
+
+.project-block p {
+  font-size: clamp(15px, 0.98vw, 19px);
+  line-height: 1.7;
+  color: #2f3740;
+  max-width: 760px;
+}
+
+/* ค่าเทอม: ต่อท้ายใบสุดท้าย */
+.stack-card.tuition {
+  position: relative;
+  top: auto;
+  z-index: 30;   /* ให้ขึ้นมาทับการ์ด sticky ก่อนหน้า */
+  margin: 0;
+  transform: none;
+  background: var(--burnt);
+  color: #fff;
+  padding: 24px 0;
+  overflow: hidden;
+  min-height: 420px;
+  display: block;
+}
+
+.stack-card.tuition::before {
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(rgba(184,106,46,0.86), rgba(184,106,46,0.86)),
+    url('tuition-bg.jpg');
+  background-size: cover, cover;
+  background-position: center, center;
+  filter: saturate(1.05);
+  z-index: 0;
+}
+
+.stack-card.tuition::after {
+  content:"";
+  position:absolute;
+  inset:-30% -10% auto -10%;
+  height: 120%;
+  background: radial-gradient(closest-side, rgba(255,255,255,0.10), rgba(255,255,255,0));
+  z-index: 0;
+  pointer-events:none;
+}
+
+.tuition-inner {
+  position: relative;
+  z-index: 1;
+  width: min(1180px, 88vw);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 24px;
+  align-items: center;
+}
+
+.tuition-h1 {
+  font-size: clamp(28px, 2.2vw, 38px);
+  font-weight: 900;
+  letter-spacing: -0.3px;
+  text-transform: uppercase;
+  line-height: 1;
+  margin-bottom: 10px;
+}
+
+.tuition-desc {
+  font-size: 11px;
+  font-weight: 300;
+  line-height: 1.5;
+  opacity: .95;
+  max-width: 500px;
+  margin-bottom: 10px;
+}
+
+.btn-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+
+.btn {
+  appearance:none;
+  border: 1px solid rgba(255,255,255,0.75);
+  background: rgba(255,255,255,0.95);
+  color: var(--burnt);
+  font-weight: 600;
+  font-size: 11px;
+  padding: 8px 12px;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: .2s;
+  min-width: 150px;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+  background:#fff;
+}
+
+.btn.alt {
+  background: transparent;
+  color:#fff;
+  border-color: rgba(255,255,255,0.9);
+}
+
+.btn.alt:hover { background: rgba(255,255,255,0.10); }
+
+.fee-label {
+  font-size: 12px;
+  font-weight: 600;
+  margin: 4px 0 6px;
+  opacity: .95;
+}
+
+.fee-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  max-width: 560px;
+}
+
+.fee-box .price {
+  font-size: clamp(28px, 2vw, 36px);
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: 0.2px;
+  margin-bottom: 4px;
+}
+
+.fee-box .detail {
+  font-size: 10px;
+  font-weight: 300;
+  line-height: 1.4;
+  opacity: .95;
+  max-width: 220px;
+}
+
+.tuition-photo {
+  width: 100%;
+  aspect-ratio: 4 / 3.2;
+  background: #eee center/cover no-repeat;
+  border: 4px solid rgba(255,255,255,0.85);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.12);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+/* =========================================
+   5.5 FOOTER
+   ========================================= */
+.footer {
+  display: flex;
+  justify-content: space-between;
+  background-color: #fafafa;
+  padding: 40px;
+  border-top: 2px solid #eee;
+  margin-top: 0;
+  color: #111;
+}
+
+.footer-left {
+    flex: 1;
+}
+
+.footer-heading {
+    color: #d94a26;
+    margin: 0 0 15px 0;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.contact-info {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.social-icons {
+    display: flex;
+    gap: 15px;
+    font-size: 36px;
+    color: #444;
+}
+
+.social-icons i,
+.social-icons a {
+    cursor: pointer;
+    transition: 0.3s;
+    color: inherit;
+    text-decoration: none;
+}
+
+.social-icons i:hover {
+    color: #d94a26;
+}
+
+.phone-numbers {
+    font-size: 10px;
+    line-height: 1.6;
+    font-weight: bold;
+}
+
+.footer-logo {
+    display: flex;
+    align-items: center;
+}
+
+.footer-right {
+    flex: 1;
+    padding-left: 50px;
+}
+
+.footer-right h3 {
+    margin: 0 0 15px 0;
+    font-size: 16px;
+    color: #000;
+}
+
+.footer-right p {
+    margin: 0;
+    font-size: 12px;
+    line-height: 1.8;
+    color: #333;
+}
+
+/* 2. แท็บเล็ต iPad แนวตั้ง (768 x 1024) */
+
+/* =========================================
+   MOBILE HERO ONLY
+   แก้เฉพาะหน้าแรกส่วนบน
+   ========================================= */
+
+
+
+
+/* =========================================
+   6. LARGE DESKTOP
+   ========================================= */
+
+
+
+
+
+
+/* =========================================
+   STACK 1 IMAGE SLIDER
+   ========================================= */
+.media-slider {
+  position: relative;
+  overflow: hidden;
+  background: #ddd;
+}
+
+.work-slider {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: inherit;
+}
+
+.work-slider-track {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.work-slide {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+}
+
+.work-slide.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.work-slider-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 3;
+  width: 46px;
+  height: 46px;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(0,0,0,0.38);
+  color: #fff;
+  font-size: 30px;
+  line-height: 1;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  transition: 0.2s ease;
+  backdrop-filter: blur(3px);
+}
+
+.work-slider-btn:hover {
+  background: rgba(0,0,0,0.58);
+}
+
+.work-slider-btn.prev {
+  left: 18px;
+}
+
+.work-slider-btn.next {
+  right: 18px;
+}
+
+.work-slider-dots {
+  position: absolute;
+  left: 50%;
+  bottom: 18px;
+  transform: translateX(-50%);
+  z-index: 3;
+  display: flex;
+  gap: 8px;
+}
+
+.work-dot {
+  width: 10px;
+  height: 10px;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.45);
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.work-dot.active {
+  background: #fff;
+  transform: scale(1.15);
+}

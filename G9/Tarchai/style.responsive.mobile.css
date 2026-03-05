@@ -1,0 +1,449 @@
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+      border-top: 12px solid #fff;
+      margin-top: -12px;
+  }
+
+  .hamburger {
+    display: block;
+  }
+
+  .navbar {
+    padding: 15px 20px;
+  }
+
+  .navbar .logo img {
+    width: 150px;
+  }
+
+  .dropdown-menu {
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+  }
+
+  .dropdown-menu > a {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    /* สำคัญ: ไม่ใช้ space-between เพื่อให้ลูกศรติดข้อความเหมือนเพื่อน */
+    justify-content: flex-start;
+    gap: 8px;
+  }
+
+  .dropdown-content {
+    position: relative;
+    top: 0 !important;
+    width: 100%;
+    max-width: 100%;
+    box-shadow: none;
+    background-color: #d95e16;
+
+    display: none;
+    visibility: visible;
+    opacity: 1;
+    border-radius: 5px;
+    padding-left: 15px;
+    margin-top: 10px;
+  }
+
+  .dropdown-menu.align-right .dropdown-content {
+    right: auto;
+    left: 0;
+  }
+
+  /* ใช้ class open จาก JS ของคุณ */
+  .dropdown-menu.open .dropdown-content {
+    display: block;
+  }
+
+  .dropdown-menu.open .arrow {
+    transform: rotate(180deg);
+  }
+
+  /* เพิ่มอันนี้: ชี้เมาส์แล้วก็เด้งได้ */
+  .dropdown-menu:hover .dropdown-content,
+  .dropdown-menu:focus-within .dropdown-content {
+    display: block;
+  }
+
+  .dropdown-menu:hover .arrow,
+  .dropdown-menu:focus-within .arrow {
+  transform: rotate(180deg);
+  }
+}
+
+@media screen and (max-width: 768px) {
+    .footer {
+        flex-direction: column;
+        padding: 30px 20px;
+        gap: 30px;
+    }
+
+    .footer-right {
+        padding-left: 0;
+    }
+  }
+
+@media (max-width: 768px) {
+  :root {
+    --headerH: 96px;
+    --heroH: 580px;
+    --preNews: 0px;
+    --heroTextTop: 180px;
+    --heroPadR: 0%;
+    --heroMin: 26px;
+    --heroVW: 10vw;
+    --heroMax: 58px;
+    --heroLineH: 0.95;
+    --newsLift: 0px;
+  }
+
+  .hero-banner-bg {
+    height: var(--heroH);
+    background-image:
+      linear-gradient(
+        90deg,
+        #000 0%,
+        #000 42%,
+        rgba(0,0,0,0.45) 100%,
+        rgba(0,0,0,0) 80%
+      ),
+      url('banner.jpg');
+    background-size: cover, cover;
+    background-position: 0 0, 80% center;
+  }
+
+  .hero-bg-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .hero-video-dim {
+    background:
+      linear-gradient(
+        90deg,
+        rgba(0,0,0,0.9) 0%,
+        rgba(0,0,0,0.78) 42%,
+        rgba(0,0,0,0.25) 100%
+      );
+  }
+
+  .hero-text-section {
+    height: var(--heroH);
+    margin-top: calc(-1 * var(--heroH));
+    pointer-events: none;
+  }
+
+  .hero-container-sticky {
+    position: relative;   /* ปิด sticky บนมือถือ */
+    top: auto;
+    height: var(--heroH);
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    overflow: visible;
+  }
+
+  .hero-text-content {
+    position: absolute;
+    top: var(--heroTextTop);
+    left: 28px;
+    right: 28px;
+  }
+
+  .hero-text-content h1 {
+    font-size: clamp(var(--heroMin), var(--heroVW), var(--heroMax));
+    line-height: var(--heroLineH);
+    letter-spacing: -0.4px;
+    max-width: 320px;
+  }
+
+  .hero-text-content h1 .text-orange {
+    margin-bottom: 8px;
+  }
+
+  
+
+  /* ตัดช่องดำยาวก่อนถึงข่าว */
+  .community-section {
+    margin-top: 0;
+    padding-top: 24px;
+    min-height: auto;
+  }
+
+  .community-section::before,
+  .community-section::after {
+    display: none;
+  }
+
+  
+
+    /* =========================================
+     MOBILE NEWS
+     ========================================= */
+  .community-container {
+    width: min(92%, 420px);
+    margin: 0 auto;
+  }
+
+  .news-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 0;
+  }
+
+  .news-col-right {
+    order: 1; /* ให้ข่าวใหญ่ขึ้นก่อน */
+  }
+
+  .news-col-left {
+    order: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .news-card {
+    width: 100%;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  .small-card {
+    min-height: 0;
+    display: grid;
+    grid-template-columns: 160px 1fr;
+  }
+
+  .small-card .news-img {
+    min-width: 0;
+    min-height: 138px;
+    background-size: cover;
+    background-position: center;
+  }
+
+  .small-card .news-content {
+    padding: 14px 14px 12px;
+  }
+
+  .news-content h3 {
+    font-size: 15px;
+    line-height: 1.35;
+    margin-bottom: 6px;
+  }
+
+  .news-content p {
+    font-size: 12px;
+    line-height: 1.5;
+  }
+
+  .large-card {
+    min-height: 320px;
+  }
+
+  .news-img-large {
+    min-height: 320px;
+    background-size: cover;
+    background-position: center;
+  }
+
+  .news-overlay {
+    padding: 18px;
+    padding-top: 88px;
+  }
+
+  .news-overlay h3 {
+    font-size: 15px;
+    line-height: 1.45;
+  }
+
+  .community-text {
+    margin-top: 26px;
+    text-align: center;
+  }
+
+  .community-text h2 {
+    font-size: 26px;
+    line-height: 1.1;
+    margin-bottom: 12px;
+  }
+
+  .community-text p {
+    font-size: 13px;
+    line-height: 1.7;
+  }
+  /* =========================================
+     MOBILE STACK -> CARD LIST
+     ========================================= */
+  .top-rule {
+    display: none;
+  }
+
+  .stack {
+    padding: 20px 0 12px;
+  }
+
+  .stack-card,
+  .stack > .stack-card.work:nth-last-child(2) {
+    position: relative;
+    top: auto;
+    margin: 0 0 14px;
+    z-index: auto;
+    transform: none;
+    background: transparent;
+  }
+
+  .stack-card.work .inner {
+    width: calc(100% - 24px);
+    margin: 0 auto;
+    display: block;
+    min-height: auto;
+    background: #f4f4f1;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  }
+
+  .media {
+    width: 100%;
+    height: 220px;
+    min-height: 220px;
+    background-size: cover;
+    background-position: center;
+  }
+
+  .content {
+    padding: 22px 18px 22px;
+    background: #f4f4f1;
+  }
+
+  .content::before {
+    left: 0;
+    top: 22px;
+    transform: none;
+    width: 6px;
+    height: 72px;
+  }
+
+  .content h3 {
+    font-size: clamp(22px, 7.5vw, 34px);
+    line-height: 1.02;
+    margin-bottom: 12px;
+    max-width: none;
+    padding-left: 14px;
+  }
+
+  .content p {
+    font-size: 14px;
+    line-height: 1.6;
+    max-width: none;
+    padding-left: 14px;
+  }
+
+  .content .meta {
+    margin-top: 14px;
+    font-size: 12px;
+    padding-left: 14px;
+  }
+    /* =========================================
+     MOBILE STACK 3 : PROJECT GALLERY
+     ========================================= */
+  .stack-card.project-gallery-card {
+    margin: 0 0 14px;
+    background: transparent;
+  }
+
+  .stack-card.project-gallery-card .project-gallery-inner {
+    width: calc(100% - 24px);
+    margin: 0 auto;
+    padding: 22px 14px 18px;
+    background: #f4f4f1;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  }
+
+  .stack-card.project-gallery-card .project-gallery-head {
+    text-align: left;
+    margin-bottom: 18px;
+    padding-left: 0;
+  }
+
+  .stack-card.project-gallery-card .project-gallery-head h2 {
+    font-size: clamp(24px, 8vw, 34px);
+    line-height: 1.05;
+    margin-bottom: 8px;
+  }
+
+  .stack-card.project-gallery-card .project-gallery-head p {
+    font-size: 13px;
+    line-height: 1.6;
+  }
+
+  .stack-card.project-gallery-card .project-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .stack-card.project-gallery-card .project-box {
+    grid-template-columns: 1fr;
+    min-height: auto;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .stack-card.project-gallery-card .project-thumb {
+    min-height: 190px;
+  }
+
+  .stack-card.project-gallery-card .project-info {
+    padding: 18px 16px 16px;
+  }
+
+  .stack-card.project-gallery-card .project-info h3 {
+    font-size: 24px;
+    margin-bottom: 8px;
+  }
+
+  .stack-card.project-gallery-card .project-info p {
+    font-size: 13px;
+    line-height: 1.6;
+    margin-bottom: 10px;
+  }
+
+  .stack-card.project-gallery-card .project-meta {
+    font-size: 12px;
+  }
+
+  .work-slider-btn {
+    width: 38px;
+    height: 38px;
+    font-size: 24px;
+  }
+
+  .work-slider-btn.prev {
+    left: 10px;
+  }
+
+  .work-slider-btn.next {
+    right: 10px;
+  }
+
+  .work-slider-dots {
+    bottom: 12px;
+  }
+
+  .project-detail {
+    gap: 14px;
+  }
+
+  .project-block h4 {
+    font-size: 18px;
+    margin-bottom: 4px;
+    padding-left: 14px;
+  }
+}

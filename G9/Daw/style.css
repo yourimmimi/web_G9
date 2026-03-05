@@ -32,10 +32,13 @@ a { text-decoration: none; color: inherit; }
     background: white;
     box-shadow: 0 2px 10px rgba(0,0,0,0.05);
     border-top: 20px solid #F37021; /* แถบส้มด้านบนสุด */
-    position: sticky;
+    /* position: sticky; */
+    position: fixed;
     top: 0;
+    left: 0;
+    width: 100%;
     z-index: 1000;
-    position: relative;
+ 
 }
 .navbar .logo img {
     width: 200px;       /* ปรับตัวเลขนี้เพื่อลด/เพิ่มขนาด (แนะนำ 150px - 200px) */

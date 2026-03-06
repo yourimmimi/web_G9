@@ -14,7 +14,7 @@
     font-family: 'Prompt', sans-serif;
 }
 
-body { background-color: #f8f8f8; color: #333; }
+body { background-color: #f8f8f8; color: #333;padding-top: 110px; }
 
 a { text-decoration: none; color: inherit; }
 
@@ -93,14 +93,14 @@ a { text-decoration: none; color: inherit; }
 
 /* ================== Fee Section ================== */
 .fee-section {
-    background: linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3)), url('photo/feecomcon.jpg') no-repeat center bottom/cover;
+    background: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url('photo/feecomcon.jpg') no-repeat center bottom/cover;
     height: 350px;
     width: auto;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-    color: var(--primary-orange);
+    color: var(--primary-black);
     position: relative;
     margin-bottom: 40px;
 
@@ -109,7 +109,7 @@ a { text-decoration: none; color: inherit; }
 .fee-content h2 {
     font-size: 4rem;
     margin: 10px 0;
-    color:var(--primary-orange);
+    color:var(--primary-black);
 }
 .fee-content p { 
     font-size: 2.5rem; }

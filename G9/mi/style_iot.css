@@ -14,7 +14,7 @@
     font-family: 'Prompt', sans-serif;
 }
 
-body { background-color: #f8f8f8; color: #333; }
+body { background-color: #f8f8f8; color: #333;padding-top: 110px; }
 
 a { text-decoration: none; color: inherit; }
 
@@ -296,7 +296,6 @@ a { text-decoration: none; color: inherit; }
     .navbar { padding: 15px 20px; }
     .navbar .logo img { width: 150px; }
 
-    /* ปรับแต่ง Pop-up Modal ให้พอดีกับหน้าจอมือถือ */
     .modal-content {
         width: 95%; 
         margin: 10% auto; 

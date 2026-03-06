@@ -266,11 +266,8 @@ async function updateAllSlotsIndicators() {
         const eventId = span.getAttribute('data-event-id');
 
         try {
-            const response = await fetch(`/api/slots/${eventId}`, {
-                headers: {
-                    'ngrok-skip-browser-warning': 'true'
-                }
-            });
+            const response = await fetch(`/api/slots/${eventId}`
+            );
 
             const data = await response.json();
 

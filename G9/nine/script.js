@@ -1,3 +1,4 @@
+const API_URL = "https://web-iote.onrender.com"; // URL ที่ได้จาก Render
 // ==========================================
 // 1. ระบบ Slider ข่าว (News Carousel)
 // ==========================================
@@ -208,7 +209,7 @@ document.body.addEventListener('click', async (e) => {
             if (regStatusMsg) regStatusMsg.innerText = "";
 
             try {
-                const response = await fetch(`/api/slots/${window.currentEventId}`);
+                const response = await fetch(`${API_URL}/api/slots/${window.currentEventId}`);
                 const data = await response.json();
 
                 if (data.slots > 0) {
@@ -266,7 +267,7 @@ async function updateAllSlotsIndicators() {
         const eventId = span.getAttribute('data-event-id');
 
         try {
-            const response = await fetch(`/api/slots/${eventId}`
+            const response = await fetch(`${API_URL}/api/slots/${eventId}`
             );
 
             const data = await response.json();
@@ -311,7 +312,7 @@ window.handleGoogleLogin = async (response) => {
     statusMsg.innerText = `กำลังบันทึกข้อมูลคุณ ${name}...`;
 
     try {
-        const res = await fetch('/api/register', {
+        const res = await fetch(`${API_URL}/api/register`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({

@@ -266,7 +266,7 @@ async function updateAllSlotsIndicators() {
         const eventId = span.getAttribute('data-event-id');
 
         try {
-            const response = await fetch(`http://localhost:3000/api/slots/${eventId}`);
+            const response = await fetch(`/api/slots/${eventId}`);
             const data = await response.json();
 
             if (data.slots > 0) {
@@ -309,7 +309,7 @@ window.handleGoogleLogin = async (response) => {
     statusMsg.innerText = `กำลังบันทึกข้อมูลคุณ ${name}...`;
 
     try {
-        const res = await fetch('http://localhost:3000/api/register', {
+        const res = await fetch('/api/register', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({

@@ -208,7 +208,7 @@ document.body.addEventListener('click', async (e) => {
             if (regStatusMsg) regStatusMsg.innerText = "";
 
             try {
-                const response = await fetch(`http://localhost:3000/api/slots/${window.currentEventId}`);
+                const response = await fetch(`/api/slots/${window.currentEventId}`);
                 const data = await response.json();
 
                 if (data.slots > 0) {
@@ -266,7 +266,12 @@ async function updateAllSlotsIndicators() {
         const eventId = span.getAttribute('data-event-id');
 
         try {
-            const response = await fetch(`/api/slots/${eventId}`);
+            const response = await fetch(`/api/slots/${eventId}`, {
+                headers: {
+                    'ngrok-skip-browser-warning': 'true'
+                }
+            });
+
             const data = await response.json();
 
             if (data.slots > 0) {
@@ -322,8 +327,16 @@ window.handleGoogleLogin = async (response) => {
         const result = await res.json();
 
         if (result.success) {
-            alert(`🎉 ยืนยันตัวตนสำเร็จ!\nยินดีต้อนรับ: ${name}`);
-            location.reload();
+            const statusMsg = document.getElementById('regStatusMsg');
+            statusMsg.style.color = "green";
+            statusMsg.innerText = "✅ ลงทะเบียนสำเร็จแล้ว! ขอบคุณครับ";
+
+            // และอาจจะสั่งปิด Modal อัตโนมัติหลังจากนั้น 2 วินาที
+            setTimeout(() => {
+                closeModal();
+                loadData(); // รีเฟรชข้อมูลที่นั่ง
+            }, 2000);
+
         } else {
             statusMsg.style.color = "#dc3545";
             statusMsg.innerText = `❌ ${result.message}`;

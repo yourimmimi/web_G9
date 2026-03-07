@@ -43,7 +43,7 @@ body {
     grid-template-columns: repeat(3, 250px);
 }
 .grid-4 {
-    grid-template-columns: repeat(4, 250px);
+    grid-template-columns: repeat(3, 250px);
 }
 .card img {
     width: 160px;

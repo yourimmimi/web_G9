@@ -128,6 +128,33 @@ app.put('/api/admin/registrants/:id', async (req, res) => {
 
 const PORT = process.env.PORT || 3000;
 
+// ==========================================
+// API สำหรับหน้า Admin จัดการที่นั่ง (Events)
+// ==========================================
+
+// 1. ดึงข้อมูลกิจกรรมทั้งหมดมาแสดงในตาราง
+app.get('/api/admin/events', async (req, res) => {
+    try {
+        const [rows] = await pool.query('SELECT * FROM events');
+        res.json(rows);
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+});
+
+// 2. อัปเดตจำนวนที่นั่ง (เมื่อกดปุ่ม ⚙️ แก้ไขจำนวนที่นั่ง)
+app.put('/api/admin/events/:id', async (req, res) => {
+    const eventId = req.params.id;
+    const { slots_remaining } = req.body;
+    
+    try {
+        await pool.query('UPDATE events SET slots_remaining = ? WHERE id = ?', [slots_remaining, eventId]);
+        res.json({ success: true, message: 'อัปเดตจำนวนที่นั่งสำเร็จ!' });
+    } catch (err) {
+        res.status(500).json({ success: false, message: err.message });
+    }
+});
+
 app.listen(PORT, '0.0.0.0', () => {
     console.log(`✅ Backend Server is running on port ${PORT}`);
 });

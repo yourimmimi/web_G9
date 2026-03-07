@@ -7,21 +7,39 @@
     <style>
         body { font-family: 'Prompt', sans-serif; background-color: #f4f7f6; padding: 20px; }
         .container { max-width: 1000px; margin: 0 auto; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
-        h2 { color: #BF5700; border-bottom: 2px solid #eee; padding-bottom: 10px; }
-        table { width: 100%; border-collapse: collapse; margin-top: 20px; font-size: 14px; }
+        h2 { color: #BF5700; border-bottom: 2px solid #eee; padding-bottom: 10px; margin-top: 30px; }
+        h2:first-child { margin-top: 0; }
+        table { width: 100%; border-collapse: collapse; margin-top: 15px; font-size: 14px; }
         th, td { padding: 12px 15px; text-align: left; border-bottom: 1px solid #ddd; }
         th { background-color: #BF5700; color: white; }
         tr:hover { background-color: #fff5ed; }
-        .btn { padding: 6px 12px; border: none; border-radius: 4px; cursor: pointer; font-family: 'Prompt'; font-size: 12px; color: white; }
+        .btn { padding: 6px 12px; border: none; border-radius: 4px; cursor: pointer; font-family: 'Prompt'; font-size: 12px; color: white; transition: 0.2s;}
+        .btn:hover { opacity: 0.8; }
         .btn-edit { background-color: #ffc107; color: #000; }
         .btn-delete { background-color: #dc3545; }
+        .btn-success { background-color: #28a745; }
         .badge { background: #17a2b8; color: white; padding: 4px 8px; border-radius: 12px; font-size: 11px; }
+        .slot-number { font-size: 18px; font-weight: bold; color: #BF5700; }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <h2> ระบบจัดการผู้สมัคร (Admin Dashboard)</h2>
+    <h2>🎯 จัดการที่นั่งกิจกรรม (Events)</h2>
+    <table id="eventTable">
+        <thead>
+            <tr>
+                <th>รหัสกิจกรรม</th>
+                <th>ที่นั่งคงเหลือ</th>
+                <th>จัดการ</th>
+            </tr>
+        </thead>
+        <tbody id="eventBody">
+            <tr><td colspan="3" style="text-align: center;">กำลังโหลดข้อมูล...</td></tr>
+        </tbody>
+    </table>
+
+    <h2>👥 ระบบจัดการผู้สมัคร (Registrants)</h2>
     <table id="dataTable">
         <thead>
             <tr>
@@ -40,12 +58,67 @@
 </div>
 
 <script>
-    const apiUrl = '/api/admin/registrants';
+    const registrantApiUrl = '/api/admin/registrants';
+    const eventApiUrl = '/api/admin/events';
 
-    // ฟังก์ชันโหลดข้อมูลมาแสดง
+    // ==========================================
+    // ฟังก์ชันจัดการ "จำนวนที่นั่ง" (เพิ่มใหม่)
+    // ==========================================
+    async function loadEvents() {
+        try {
+            const res = await fetch(eventApiUrl);
+            const data = await res.json();
+            const tbody = document.getElementById('eventBody');
+            
+            if(data.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="3" style="text-align: center;">ยังไม่มีข้อมูลกิจกรรม</td></tr>';
+                return;
+            }
+
+            tbody.innerHTML = data.map(row => `
+                <tr>
+                    <td><span class="badge" style="background: #6f42c1;">${row.id}</span></td>
+                    <td id="slots-${row.id}" class="slot-number">${row.slots_remaining}</td>
+                    <td>
+                        <button class="btn btn-success" onclick="editSlots('${row.id}')">⚙️ แก้ไขจำนวนที่นั่ง</button>
+                    </td>
+                </tr>
+            `).join('');
+        } catch (err) {
+            console.error('ไม่สามารถโหลดข้อมูลกิจกรรมได้');
+        }
+    }
+
+    async function editSlots(id) {
+        const currentSlots = document.getElementById(`slots-${id}`).innerText;
+        const newSlots = prompt(`ตั้งค่าจำนวนที่นั่งใหม่สำหรับกิจกรรม ${id}:`, currentSlots);
+        
+        // เช็กว่าผู้ใช้พิมพ์ตัวเลขมาจริงๆ และไม่ได้กดยกเลิก
+        if (newSlots !== null && newSlots.trim() !== "" && !isNaN(newSlots)) {
+            try {
+                const res = await fetch(`${eventApiUrl}/${id}`, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ slots_remaining: parseInt(newSlots) }) 
+                });
+                const result = await res.json();
+                if(result.success) {
+                    loadEvents(); // รีเฟรชตารางกิจกรรม
+                } else {
+                    alert('เกิดข้อผิดพลาด: ' + result.message);
+                }
+            } catch(err) {
+                alert('เชื่อมต่อเซิร์ฟเวอร์ไม่ได้');
+            }
+        }
+    }
+
+    // ==========================================
+    // ฟังก์ชันจัดการ "ผู้สมัคร" (ของเดิมของคุณ)
+    // ==========================================
     async function loadData() {
         try {
-            const res = await fetch(apiUrl);
+            const res = await fetch(registrantApiUrl);
             const data = await res.json();
             const tbody = document.getElementById('tableBody');
             
@@ -68,25 +141,24 @@
                 </tr>
             `).join('');
         } catch (err) {
-            alert('ไม่สามารถโหลดข้อมูลได้ ตรวจสอบว่าเปิด Node.js หรือยัง');
+            console.error('ไม่สามารถโหลดข้อมูลผู้สมัครได้');
         }
     }
 
-    // ฟังก์ชันแก้ไขชื่อ
     async function editData(id) {
         const currentName = document.getElementById(`name-${id}`).innerText;
         const newName = prompt("แก้ไขชื่อ-นามสกุล:", currentName);
         
         if (newName && newName.trim() !== "" && newName !== currentName) {
             try {
-                const res = await fetch(`${apiUrl}/${id}`, {
+                const res = await fetch(`${registrantApiUrl}/${id}`, {
                     method: 'PUT',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ name: newName, phone: "-" }) 
                 });
                 const result = await res.json();
                 if(result.success) {
-                    loadData(); // รีเฟรชตาราง
+                    loadData();
                 } else {
                     alert('เกิดข้อผิดพลาด: ' + result.message);
                 }
@@ -96,16 +168,15 @@
         }
     }
 
-    // ฟังก์ชันลบข้อมูล
     async function deleteData(id) {
-        if (confirm("⚠️ คุณแน่ใจหรือไม่ว่าต้องการลบข้อมูลนี้?\n(การลบจะทำให้โควต้าที่นั่งของกิจกรรมนี้เพิ่มขึ้น 1 ที่นั่งอัตโนมัติ)")) {
+        if (confirm("⚠️ คุณแน่ใจหรือไม่ว่าต้องการลบข้อมูลนี้?\\n(การลบจะทำให้โควต้าที่นั่งของกิจกรรมนี้เพิ่มขึ้น 1 ที่นั่งอัตโนมัติ)")) {
             try {
-                const res = await fetch(`${apiUrl}/${id}`, { method: 'DELETE' });
+                const res = await fetch(`${registrantApiUrl}/${id}`, { method: 'DELETE' });
                 const result = await res.json();
                 
                 if(result.success) {
-                    alert(result.message);
-                    loadData(); // รีเฟรชตาราง
+                    loadData(); 
+                    loadEvents(); // อัปเดตตารางที่นั่งด้วย เพราะคืนที่นั่งแล้ว
                 } else {
                     alert('เกิดข้อผิดพลาด: ' + result.message);
                 }
@@ -115,7 +186,8 @@
         }
     }
 
-    // โหลดข้อมูลทันทีที่เปิดหน้าเว็บ
+    // โหลดข้อมูลทั้ง 2 ตารางทันทีที่เปิดหน้าเว็บ
+    loadEvents();
     loadData();
 </script>
 

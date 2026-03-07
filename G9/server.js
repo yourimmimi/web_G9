@@ -10,11 +10,11 @@ app.use(express.json());
 app.use(express.static(__dirname));
 
 const pool = mysql.createPool({
-    host: process.env.DB_host,
-    port: process.env.DB_port,
-    user: process.env.DB_user,
-    password: process.env.DB_password,
-    database: process.env.DB_database,
+    host: 'webiote1-iote-news.a.aivencloud.com',
+    port: 14332,
+    user: 'avnadmin',
+    password: 'AVNS_Cjbzu_24RuU4dWb99Is',
+    database: 'defaultdb',
     ssl: {
         rejectUnauthorized: false
     }

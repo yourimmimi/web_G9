@@ -2,12 +2,14 @@ const hamburger = document.querySelector('.hamburger');
 const navLinks = document.querySelector('.nav-links');
 const dropdownMenus = document.querySelectorAll('.dropdown-menu');
 
+const MOBILE_BREAKPOINT = 768;
+
 /* =========================================
-   MOBILE NAV
+   MOBILE NAV ONLY
    ========================================= */
 if (hamburger && navLinks) {
   hamburger.addEventListener('click', () => {
-    if (window.innerWidth <= 768) {
+    if (window.innerWidth <= MOBILE_BREAKPOINT) {
       if (navLinks.style.display === 'flex') {
         navLinks.style.display = 'none';
       } else {
@@ -33,7 +35,7 @@ dropdownMenus.forEach((menu) => {
 
   if (trigger) {
     trigger.addEventListener('click', (e) => {
-      if (window.innerWidth <= 768) {
+      if (window.innerWidth <= MOBILE_BREAKPOINT) {
         e.preventDefault();
 
         dropdownMenus.forEach((otherMenu) => {
@@ -49,7 +51,7 @@ dropdownMenus.forEach((menu) => {
 });
 
 window.addEventListener('resize', () => {
-  if (window.innerWidth > 768) {
+  if (window.innerWidth > MOBILE_BREAKPOINT) {
     if (navLinks) {
       navLinks.style.display = '';
       navLinks.style.flexDirection = '';

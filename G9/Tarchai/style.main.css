@@ -718,7 +718,6 @@ header {
   transform: translateY(-50%);
   width: 14px;
   height: 170px;
-  background: var(--orange);
 }
 
 .content h3 {

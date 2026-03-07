@@ -54,17 +54,6 @@ a { text-decoration: none; color: inherit; }
 
 .dropdown-menu {
     position: relative;
-    display: inline-block;
-}
-
-
-.arrow {
-    font-size: 0.7em;
-    margin-left: 5px;
-    vertical-align: middle;
-}
-.dropdown-menu {
-    position: relative;
     display: flex; 
     align-items: center;
     height: 100%;
@@ -125,13 +114,11 @@ a { text-decoration: none; color: inherit; }
     padding-left: 25px; 
 }
 
-
 .dropdown-menu:hover .dropdown-content {
     visibility: visible;
     opacity: 1;
     top: 100%;
 }
-
 
 .dropdown-menu:hover .arrow {
     transform: rotate(180deg);
@@ -145,6 +132,18 @@ a { text-decoration: none; color: inherit; }
 @media (max-width: 768px) {
     .nav-links { display: none; }
     .hamburger { display: block; }
+    .nav-links.active {
+    display: flex !important;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;       /* เริ่มต้นจากขอบล่างของ .navbar พอดี */
+    left: 0;
+    width: 100%;     /* กว้างเท่ากับหน้าจอพอดี */
+    background: white;
+    padding: 0; /* เคลียร์ padding เดิม */
+    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+    z-index: 999;
+    }
     .dropdown-menu {
         flex-direction: column;
         align-items: flex-start;
@@ -187,6 +186,15 @@ a { text-decoration: none; color: inherit; }
     .dropdown-menu:focus-within .arrow {
         transform: rotate(180deg);
     }
+}
+@media (max-width: 480px) {
+    .navbar {
+        padding: 15px 20px;
+    }
+    .navbar .logo img {
+        width: 150px;
+    }
+
 }
 @media (max-width: 1024px) {
     html, body {

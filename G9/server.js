@@ -10,14 +10,13 @@ app.use(express.json());
 app.use(express.static(__dirname));
 
 const pool = mysql.createPool({
-    host: process.env.DB_host ,
-    port: process.env.DB_port ,
-    user: process.env.DB_user ,
-    password: process.env.DB_password ,
-    database: process.env.DB_database ,
+    host: process.env.DB_host,
+    port: process.env.DB_port,
+    user: process.env.DB_user,
+    password: process.env.DB_password,
+    database: process.env.DB_database,
     ssl: {
-        minVersion: 'TLSv1.2',
-        rejectUnauthorized: true
+        rejectUnauthorized: false
     }
 });
 
@@ -132,3 +131,39 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, '0.0.0.0', () => {
     console.log(`✅ Backend Server is running on port ${PORT}`);
 });
+
+async function forceCreateTables() {
+    try {
+        console.log("⏳ กำลังสร้างตารางใน Aiven...");
+        
+        await pool.query(`
+            CREATE TABLE IF NOT EXISTS events (
+                id VARCHAR(50) PRIMARY KEY,
+                slots_remaining INT NOT NULL
+            )
+        `);
+        
+        await pool.query(`
+            INSERT IGNORE INTO events (id, slots_remaining) 
+            VALUES ('camp-01', 24)
+        `);
+
+        await pool.query(`
+            CREATE TABLE IF NOT EXISTS registrations (
+                id INT AUTO_INCREMENT PRIMARY KEY,
+                event_id VARCHAR(50),
+                name VARCHAR(100),
+                email VARCHAR(100),
+                phone VARCHAR(20),
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+            )
+        `);
+
+        console.log("✅ สร้างตารางใน Aiven เสร็จสมบูรณ์แล้ว!");
+    } catch (err) {
+        console.error("❌ สร้างตารางไม่สำเร็จ:", err.message);
+    }
+}
+
+// สั่งให้มันทำงานทุกครั้งที่เซิร์ฟเวอร์เปิด
+forceCreateTables();

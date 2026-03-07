@@ -1,0 +1,338 @@
+@media (min-width: 769px) and (max-width: 1180px) {
+  :root {
+    --headerH: 100px;
+    --heroH: 680px;
+    --preNews: 140px;
+    --heroTextTop: 190px;
+    --heroPadR: 20%;
+    --heroMin: 36px;
+    --heroVW: 6.8vw;
+    --heroMax: 72px;
+    --heroLineH: 0.95;
+    --newsLift: -36px;
+    --contentMax: 960px;
+    --cardW: min(980px, 94vw);
+    --hold: 0px;
+  }
+
+  .navbar {
+    padding: 14px 24px;
+  }
+
+  .navbar .logo img {
+    width: 170px;
+  }
+
+  .nav-links {
+    display: none;
+    border-top: 12px solid #fff;
+    margin-top: -12px;
+  }
+
+  .hamburger {
+    display: block;
+    font-size: 1.9rem;
+  }
+
+  .dropdown-menu {
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+  }
+
+  .dropdown-menu > a {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 8px;
+  }
+
+  .dropdown-content {
+    position: relative;
+    top: 0 !important;
+    left: 0;
+    right: auto;
+    width: 100%;
+    max-width: 100%;
+    box-shadow: none;
+    background-color: #d95e16;
+    display: none;
+    visibility: visible;
+    opacity: 1;
+    border-radius: 5px;
+    padding-left: 16px;
+    margin-top: 10px;
+  }
+
+  .dropdown-menu.open .dropdown-content {
+    display: block;
+  }
+
+  .dropdown-menu.open .arrow {
+    transform: rotate(180deg);
+  }
+
+  .hero-banner-bg {
+    height: var(--heroH);
+    background-size: cover, cover;
+    background-position: 0 0, 64% center;
+  }
+
+  .hero-bg-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .hero-video-dim {
+    background: linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 0.92) 0%,
+      rgba(0, 0, 0, 0.76) 38%,
+      rgba(0, 0, 0, 0.28) 100%
+    );
+  }
+
+  .hero-container-sticky {
+    width: 92%;
+    max-width: 980px;
+  }
+
+  .hero-text-content {
+    right: var(--heroPadR);
+  }
+
+  .hero-text-content h1 {
+    max-width: 520px;
+    letter-spacing: -0.6px;
+  }
+
+  .community-section {
+    min-height: auto;
+    padding-bottom: 64px;
+  }
+
+  .community-container {
+    width: min(92%, 980px);
+  }
+
+  .news-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+    margin-top: var(--newsLift);
+  }
+
+  .news-col-right {
+    order: 1;
+  }
+
+  .news-col-left {
+    order: 2;
+    gap: 18px;
+  }
+
+  .small-card {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    min-height: 190px;
+  }
+
+  .small-card .news-img {
+    min-width: 0;
+    min-height: 190px;
+  }
+
+  .small-card .news-content {
+    padding: 22px 20px;
+  }
+
+  .news-content h3 {
+    font-size: 18px;
+  }
+
+  .news-content p {
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  .large-card,
+  .news-img-large {
+    min-height: 440px;
+  }
+
+  .news-overlay {
+    padding: 28px;
+    padding-top: 100px;
+  }
+
+  .news-overlay h3 {
+    font-size: 24px;
+  }
+
+  .community-text {
+    margin-top: 52px;
+  }
+
+  .community-text h2 {
+    font-size: 38px;
+    margin-bottom: 16px;
+  }
+
+  .community-text p {
+    font-size: 15px;
+    line-height: 1.8;
+  }
+
+  .top-rule {
+    display: none;
+  }
+
+  .stack {
+    padding: 26px 0 18px;
+  }
+
+  .stack-card,
+  .stack > .stack-card.work:nth-last-child(2) {
+    position: relative;
+    top: auto;
+    margin: 0 0 18px;
+    z-index: auto;
+    transform: none;
+    background: transparent;
+  }
+
+  .stack-card.work .inner {
+    width: min(94vw, 980px);
+    margin: 0 auto;
+    grid-template-columns: 1fr;
+    min-height: auto;
+    background: #f4f4f1;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 10px 28px rgba(0,0,0,0.08);
+  }
+
+  .media {
+    min-height: 380px;
+    height: 380px;
+  }
+
+  .content {
+    padding: 34px 28px 32px;
+  }
+
+  .content::before {
+    top: 34px;
+    left: 0;
+    transform: none;
+    width: 8px;
+    height: 96px;
+  }
+
+  .content h3 {
+    font-size: clamp(34px, 4.8vw, 52px);
+    max-width: none;
+    line-height: 1;
+    padding-left: 18px;
+  }
+
+  .content p,
+  .project-block p {
+    font-size: 16px;
+    line-height: 1.7;
+    max-width: none;
+    padding-left: 18px;
+  }
+
+  .project-block h4 {
+    font-size: 22px;
+    padding-left: 18px;
+  }
+
+  .content .meta {
+    margin-top: 18px;
+    padding-left: 18px;
+  }
+
+  .project-detail {
+    gap: 18px;
+  }
+
+  .stack-card.project-gallery-card .project-gallery-inner {
+    width: min(94vw, 980px);
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 10px 28px rgba(0,0,0,0.08);
+    padding: 32px 24px 28px;
+  }
+
+  .stack-card.project-gallery-card .project-gallery-head {
+    padding-left: 0;
+    margin-bottom: 22px;
+  }
+
+  .stack-card.project-gallery-card .project-gallery-head h2 {
+    font-size: clamp(34px, 4.6vw, 50px);
+  }
+
+  .stack-card.project-gallery-card .project-gallery-head p {
+    font-size: 15px;
+  }
+
+  .stack-card.project-gallery-card .project-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .stack-card.project-gallery-card .project-box {
+    min-height: 240px;
+  }
+
+  .stack-card.tuition {
+    padding: 34px 0;
+    min-height: auto;
+  }
+
+  .tuition-inner {
+    width: min(92vw, 980px);
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .tuition-h1 {
+    font-size: clamp(32px, 4.4vw, 44px);
+  }
+
+  .tuition-desc {
+    font-size: 14px;
+    line-height: 1.7;
+    max-width: 680px;
+  }
+
+  .btn {
+    font-size: 13px;
+    padding: 10px 16px;
+    min-width: 185px;
+  }
+
+  .fee-box .detail {
+    font-size: 12px;
+    max-width: 280px;
+  }
+
+  .tuition-photo {
+    max-width: 560px;
+    margin: 0 auto;
+  }
+
+  .footer {
+    flex-direction: column;
+    gap: 28px;
+    padding: 36px 28px;
+  }
+
+  .footer-right {
+    padding-left: 0;
+  }
+}

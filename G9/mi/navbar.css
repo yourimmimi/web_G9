@@ -1,5 +1,5 @@
 :root {
-    --primary-orange: #F37021; /* สีส้มตามภาพ */
+    --primary-orange: #F37021;
     --text-dark: #333;
     --text-gray: #666;
     --bg-light: #fff;
@@ -29,7 +29,7 @@ a { text-decoration: none; color: inherit; }
     padding: 15px 40px;
     background: white;
     box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-    border-top: 20px solid #F37021; /* แถบส้มด้านบนสุด */
+    border-top: 20px solid #F37021;
     /* position: sticky; */
     position: fixed;
     top: 0;
@@ -38,10 +38,10 @@ a { text-decoration: none; color: inherit; }
     z-index: 1000;
 }
 .navbar .logo img {
-    width: 200px;       /* ปรับตัวเลขนี้เพื่อลด/เพิ่มขนาด (แนะนำ 150px - 200px) */
-    height: auto;       /* ให้ความสูงปรับตามอัตโนมัติ สัดส่วนจะไม่เพี้ยน */
-    display: block;     /* จัดระเบียบการวาง */
-    object-fit: contain; /* มั่นใจว่าภาพจะไม่โดนตัด */
+    width: 200px;
+    height: auto;
+    display: block;   
+    object-fit: contain; 
 }
 .nav-links { list-style: none; display: flex; gap: 50px; font-size: 0.8rem; font-weight: 600; }
 
@@ -52,7 +52,6 @@ a { text-decoration: none; color: inherit; }
 .hamburger { display: none; cursor: pointer; font-size: 1.5rem; }
 
 /*Dropdown Menu Styles */
-
 .dropdown-menu {
     position: relative;
     display: flex; 
@@ -132,7 +131,7 @@ a { text-decoration: none; color: inherit; }
     left: auto;
     right: 0;
 }
-/* Mobile Responsive */
+
 @media (max-width: 768px) {
     .nav-links { display: none; }
     .hamburger { display: block; }
@@ -140,11 +139,10 @@ a { text-decoration: none; color: inherit; }
     display: flex !important;
     flex-direction: column;
     position: absolute;
-    top: 100%;       /* เริ่มต้นจากขอบล่างของ .navbar พอดี */
+    top: 100%;  
     left: 0;
-    width: 100%;     /* กว้างเท่ากับหน้าจอพอดี */
     background: white;
-    padding: 0; /* เคลียร์ padding เดิม */
+    padding: 0; 
     box-shadow: 0 5px 10px rgba(0,0,0,0.1);
     z-index: 999;
     }
@@ -157,7 +155,6 @@ a { text-decoration: none; color: inherit; }
     .dropdown-menu > a {
         width: 100%;
         display: flex;
-        /* justify-content: space-between; */
         align-items: center;
     }
 

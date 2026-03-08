@@ -365,7 +365,7 @@ a { text-decoration: none; color: inherit; }
 }
 
 
-/* 4. มือถือแนวตั้ง (iPhone รุ่นใหม่ๆ เช่น 375x812, 414x896) */
+/*มือถือแนวตั้ง (iPhone รุ่นใหม่ๆ เช่น 375x812, 414x896) */
 @media (max-width: 480px) {
     .hero-content h1 { font-size: 1.8rem; }
     .hero-content h2 { font-size: 1.4rem; }

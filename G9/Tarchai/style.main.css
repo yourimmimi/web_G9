@@ -307,7 +307,7 @@ header {
   transform: translateY(-1px);
 }
 
-/* ให้ข้อความลอยอยู่บนวิดีโอ */
+/* อักษรลอย */
 .hero-text-section {
   position: relative;
   width: 100%;
@@ -329,7 +329,7 @@ header {
 }
 
 .hero-text-content {
-  position: absolute;                    /* ชั้น 1: text ล้วน */
+  position: relative;                    /* ชั้น 1: text ล้วน */
   top: var(--heroTextTop);
   left: 0;
   right: var(--heroPadR);

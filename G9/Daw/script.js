@@ -21,7 +21,7 @@ const dropdownMenus = document.querySelectorAll('.dropdown-menu');
                 });
             }
 
-dropdownMenus.forEach((menu) => {
+dropdownMenus.forEach((menu) => { /*เปิดปิดเมนูย่อยบนมือถือ*/
   const trigger = menu.querySelector('.dropbtn');
 
   if (trigger) {
@@ -41,7 +41,7 @@ window.addEventListener('resize', () => {
   }
 });
 
-// สำหรับปิดเมนูอัตโนมัติเมื่อกดลิงก์ (เผื่อใช้หน้าเดียวแบบ Scroll)
+// สำหรับปิดเมนูอัตโนมัติเมื่อกดลิงก์//
 document.querySelectorAll('.nav-links li a').forEach(link => {
     link.addEventListener('click', () => {
         navLinks.classList.remove('active');

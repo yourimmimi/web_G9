@@ -4,6 +4,10 @@
       border-top: 12px solid #fff;
       margin-top: -12px;
   }
+  
+    .tuition-photo {
+    display: none;
+  }
 
   .hamburger {
     display: block;

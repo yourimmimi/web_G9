@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const programContainer = document.getElementById('program-container');
     if(programContainer) {
-        programContainer.innerHTML = ''; // เคลียร์ Loading...
+        programContainer.innerHTML = ''; 
         programsData.forEach(program => {
             const cardHTML = `
                 <a href="${program.link}" class="program-card-link">
